@@ -4,11 +4,16 @@ This project trains an agent to solve a maze.
 
 ## Team Members
 
-Chen Ziqian<br>
-Joshua Cheng Si Le<br>
-Nyi Nyi Soe San<br>
-Wang Xiaotong<br>
-Xu Zhekai<br>
+Chen Ziqian
+
+Joshua Cheng Si Le
+
+Nyi Nyi Soe San
+
+Wang Xiaotong
+
+Xu Zhekai
+
 Yao Jieyi
 
 ## Requirements
