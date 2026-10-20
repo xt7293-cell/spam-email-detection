@@ -1,1 +1,0 @@
-# Build the interface to select mazes, run algorithms, and animate solutions.
