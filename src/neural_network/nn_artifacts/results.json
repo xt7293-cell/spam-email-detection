@@ -1,0 +1,76 @@
+{
+  "model": "MLP on TF-IDF (Keras)",
+  "created": "2026-10-28T00:42:12",
+  "seed": 42,
+  "data": {
+    "train": {
+      "rows": 21487,
+      "spam_share": 0.4741
+    },
+    "validation": {
+      "rows": 4496,
+      "spam_share": 0.4935
+    },
+    "test": {
+      "rows": 4499,
+      "spam_share": 0.483
+    }
+  },
+  "config": {
+    "max_features": 20000,
+    "ngram_range": [
+      1,
+      2
+    ],
+    "sublinear_tf": true,
+    "min_df": 2,
+    "batch_size": 128,
+    "max_epochs": 30,
+    "early_stopping_patience": 3,
+    "optimizer": "Adam(1e-3)",
+    "architecture": "Dense256-Drop0.5-Dense64-Drop0.3-Sigmoid",
+    "trainable_params": 5136769
+  },
+  "training": {
+    "epochs_run": 5,
+    "best_epoch": 2
+  },
+  "threshold_selected_on_validation": 0.7,
+  "validation": {
+    "threshold": 0.7,
+    "accuracy": 0.9919928825622776,
+    "precision": 0.9936680235187698,
+    "recall": 0.9900856241550248,
+    "f1": 0.9918735891647855,
+    "roc_auc": 0.9993484623850829,
+    "pr_auc": 0.9992450976100079,
+    "false_positive_rate": 0.006148440931049627,
+    "false_negative_rate": 0.009914375844975214,
+    "tn": 2263,
+    "fp": 14,
+    "fn": 22,
+    "tp": 2197
+  },
+  "test": {
+    "threshold": 0.7,
+    "accuracy": 0.98421871527006,
+    "precision": 0.9911214953271028,
+    "recall": 0.976069949378739,
+    "f1": 0.9835381405054486,
+    "roc_auc": 0.9989504190212167,
+    "pr_auc": 0.9987540889266411,
+    "false_positive_rate": 0.00816852966466036,
+    "false_negative_rate": 0.02393005062126093,
+    "tn": 2307,
+    "fp": 19,
+    "fn": 52,
+    "tp": 2121
+  },
+  "environment": {
+    "python": "3.14.0",
+    "tensorflow": "2.22.0-rc0",
+    "scikit_learn": "1.9.1",
+    "numpy": "2.5.4",
+    "pandas": "3.1.0"
+  }
+}

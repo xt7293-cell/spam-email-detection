@@ -1,0 +1,3 @@
+-r requirements.txt
+# Match the supplied neural model environment if available for your Python version.
+tensorflow>=2.16

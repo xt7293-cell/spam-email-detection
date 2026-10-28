@@ -1,0 +1,11 @@
+{
+  "python_syntax": "passed",
+  "static_page": "passed",
+  "status_endpoint": "passed",
+  "input_validation": "passed",
+  "cross_origin_rejection": "passed",
+  "missing_models": "passed",
+  "partial_model_availability": "passed",
+  "real_saved_model_inference": "not verified: ML dependencies unavailable",
+  "repository_installation": "not performed: destination write permission not granted"
+}

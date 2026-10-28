@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "all_input_file_hashes_match": true,
+  "training_source_hashes_match": true,
+  "model_hash_matches": true,
+  "validation_metrics_independently_reproduced": {
+    "n": 4496,
+    "accuracy": 0.9891014234875445,
+    "precision": 0.9891794409377818,
+    "recall": 0.9887336638125281,
+    "f1": 0.9889565021410863,
+    "tn": 2253,
+    "fp": 24,
+    "fn": 25,
+    "tp": 2194,
+    "false_positive_rate": 0.010540184453227932,
+    "false_negative_rate": 0.011266336187471835,
+    "roc_auc": 0.9991355053760761,
+    "average_precision": 0.9990713035863734
+  },
+  "all_validation_predictions_match_saved_csv": true,
+  "all_validation_wrapped_and_plain_inputs_match": true,
+  "vocabulary_and_idf_match_independent_training_only_fit": true,
+  "shared_vectorizer_available_as_pipeline_tfidf_step": true,
+  "classifier_class_counts_match_training_only": true,
+  "prediction_adapter_matches_pipeline": true,
+  "test_set_usage": "Not included in this Member 2 package; never read or evaluated"
+}

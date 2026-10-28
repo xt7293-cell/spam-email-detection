@@ -1,0 +1,18 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.DS_Store
+__MACOSX/
+.cache/
+# Keep large datasets and model binaries locally; document their provenance.
+*.joblib
+*.keras
+*.h5
+data/processed/*.csv
+data/preparation_submission/*.csv
+src/naive_bayes/artifacts/*.csv
+src/neural_network/nn_artifacts/predictions/*.csv
+
+.integration-backups/
+

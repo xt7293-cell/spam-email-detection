@@ -1,0 +1,83 @@
+[
+  {
+    "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\Spam_Email_Detection\\enron_spam.csv",
+    "sha256": "e09da29923e651e9a750fb7b84cf297122157d63986a2c0bc365716ed7c10dc3",
+    "rows": 33716,
+    "class_counts": {
+      "0": 16545,
+      "1": 17171
+    }
+  },
+  {
+    "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\Spam_Email_Detection\\test.csv",
+    "sha256": "ecf75ce14963ba27360bf1260a94876dc6b3d2c3cbc1dfa2b85bfcb9499a6de8",
+    "rows": 4352,
+    "class_counts": {
+      "0": 2235,
+      "1": 2117
+    }
+  },
+  {
+    "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\Spam_Email_Detection\\train.csv",
+    "sha256": "c2fdb4db9af0e00d56516273c1f1d0c1b5f943f5d2107bf7ea4957306d9a093a",
+    "rows": 21460,
+    "class_counts": {
+      "0": 11100,
+      "1": 10360
+    }
+  },
+  {
+    "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\Spam_Email_Detection\\validation.csv",
+    "sha256": "14ec5be8bdd409203b86a811ff0ed2777f5955b217b4a23e0521b5e89634f9e9",
+    "rows": 4390,
+    "class_counts": {
+      "0": 2294,
+      "1": 2096
+    }
+  },
+  {
+    "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\NaiveBayes\\data\\train.csv",
+    "sha256": "d9ae8c2f2abade2d87467971ae4c72493d01bde36d29f3182b4623018b6d755d",
+    "rows": 21487,
+    "class_counts": {
+      "0": 11301,
+      "1": 10186
+    }
+  },
+  {
+    "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\NaiveBayes\\data\\validation.csv",
+    "sha256": "435f7f4ba9da369acbfffc679ddf8fa67a2e2fd5c1d973c2bade6a715ef667a7",
+    "rows": 4496,
+    "class_counts": {
+      "0": 2277,
+      "1": 2219
+    }
+  },
+  {
+    "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\data\\test.csv",
+    "sha256": "46be2ce82808cd333486f589661f7dada883643796f0045658efce59d38e2a45",
+    "rows": 4499,
+    "class_counts": {
+      "0": 2326,
+      "1": 2173
+    }
+  },
+  {
+    "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\data\\train.csv",
+    "sha256": "d9ae8c2f2abade2d87467971ae4c72493d01bde36d29f3182b4623018b6d755d",
+    "rows": 21487,
+    "class_counts": {
+      "0": 11301,
+      "1": 10186
+    }
+  },
+  {
+    "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\data\\validation.csv",
+    "sha256": "435f7f4ba9da369acbfffc679ddf8fa67a2e2fd5c1d973c2bade6a715ef667a7",
+    "rows": 4496,
+    "class_counts": {
+      "0": 2277,
+      "1": 2219
+    }
+  }
+]

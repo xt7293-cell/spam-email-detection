@@ -1,0 +1,1 @@
+No trained logistic-regression model was supplied. Add a trusted fitted scikit-learn pipeline at models/logistic_regression/pipeline.joblib with labels 0=legitimate and 1=spam. The application will load it on its next start.

@@ -1,0 +1,28 @@
+{
+  "scope": "train and validation only; test.csv is not opened",
+  "splits_preserved": true,
+  "splits": {
+    "train": {
+      "rows": 21487,
+      "ham": 11301,
+      "spam": 10186,
+      "raw_duplicate_rows": 0,
+      "normalized_duplicate_rows": 245,
+      "normalized_conflicting_groups": 0,
+      "sha256": "d9ae8c2f2abade2d87467971ae4c72493d01bde36d29f3182b4623018b6d755d"
+    },
+    "validation": {
+      "rows": 4496,
+      "ham": 2277,
+      "spam": 2219,
+      "raw_duplicate_rows": 0,
+      "normalized_duplicate_rows": 57,
+      "normalized_conflicting_groups": 0,
+      "sha256": "435f7f4ba9da369acbfffc679ddf8fa67a2e2fd5c1d973c2bade6a715ef667a7"
+    }
+  },
+  "raw_cross_split_unique_overlap": 0,
+  "normalized_cross_split_unique_overlap": 1,
+  "overlapping_validation_rows": 1,
+  "note": "Normalized duplicates remain in Member 1's fixed splits. No rows were removed or reassigned. Reported primary metrics use all validation rows; overlap-excluded metrics are a sensitivity check only. Member 1/5 should review decoded-text grouping before final evaluation. No independent exhaustive near-duplicate or test-split audit was run here."
+}

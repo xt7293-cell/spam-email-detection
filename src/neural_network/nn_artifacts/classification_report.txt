@@ -1,0 +1,20 @@
+=== VALIDATION (threshold 0.70) ===
+              precision    recall  f1-score   support
+
+         ham     0.9904    0.9939    0.9921      2277
+        spam     0.9937    0.9901    0.9919      2219
+
+    accuracy                         0.9920      4496
+   macro avg     0.9920    0.9920    0.9920      4496
+weighted avg     0.9920    0.9920    0.9920      4496
+
+=== TEST (threshold 0.70) ===
+              precision    recall  f1-score   support
+
+         ham     0.9780    0.9918    0.9848      2326
+        spam     0.9911    0.9761    0.9835      2173
+
+    accuracy                         0.9842      4499
+   macro avg     0.9845    0.9840    0.9842      4499
+weighted avg     0.9843    0.9842    0.9842      4499
+

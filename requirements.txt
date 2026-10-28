@@ -1,0 +1,6 @@
+# Runtime for the website and Naive Bayes; use the saved-model versions where possible.
+numpy>=1.26
+scipy>=1.12
+pandas>=2.2
+scikit-learn>=1.4
+joblib>=1.3
