@@ -4,6 +4,7 @@ from pathlib import Path
 import argparse
 import json
 from model_loader import Models
+from website_summary import website_summary
 ROOT = Path(__file__).resolve().parents[1]
 MODELS = None
 
@@ -21,7 +22,8 @@ class Handler(SimpleHTTPRequestHandler):
         self.wfile.write(body)
 
     def do_GET(self):
-        if self.path == '/api/status': self.send_json(200, {'models':MODELS.status()})
+        if self.path == '/api/experiments': self.send_json(200, website_summary())
+        elif self.path == '/api/status': self.send_json(200, {'models':MODELS.status()})
         else: super().do_GET()
 
     def do_POST(self):

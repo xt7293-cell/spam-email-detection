@@ -1,0 +1,71 @@
+{
+  "model": "Logistic regression",
+  "selected": {
+    "C": 10.0,
+    "fit_seconds": 0.3660182999992685,
+    "converged": true,
+    "accuracy": 0.9904359430604982,
+    "precision": 0.9852809991079393,
+    "recall": 0.9954934655250113,
+    "f1": 0.9903609056265411,
+    "false_positive_rate": 0.014492753623188406,
+    "tn": 2244,
+    "fp": 33,
+    "fn": 10,
+    "tp": 2209,
+    "n": 4496
+  },
+  "experiments": [
+    {
+      "C": 0.1,
+      "fit_seconds": 0.16242810000039754,
+      "converged": true,
+      "accuracy": 0.9701957295373665,
+      "precision": 0.9522776572668112,
+      "recall": 0.9891843172600271,
+      "f1": 0.9703801945181255,
+      "false_positive_rate": 0.04830917874396135,
+      "tn": 2167,
+      "fp": 110,
+      "fn": 24,
+      "tp": 2195,
+      "n": 4496
+    },
+    {
+      "C": 1.0,
+      "fit_seconds": 0.2603655999992043,
+      "converged": true,
+      "accuracy": 0.9839857651245552,
+      "precision": 0.9747899159663865,
+      "recall": 0.9932401982875169,
+      "f1": 0.9839285714285714,
+      "false_positive_rate": 0.025032938076416336,
+      "tn": 2220,
+      "fp": 57,
+      "fn": 15,
+      "tp": 2204,
+      "n": 4496
+    },
+    {
+      "C": 10.0,
+      "fit_seconds": 0.3660182999992685,
+      "converged": true,
+      "accuracy": 0.9904359430604982,
+      "precision": 0.9852809991079393,
+      "recall": 0.9954934655250113,
+      "f1": 0.9903609056265411,
+      "false_positive_rate": 0.014492753623188406,
+      "tn": 2244,
+      "fp": 33,
+      "fn": 10,
+      "tp": 2209,
+      "n": 4496
+    }
+  ],
+  "selection": "Highest validation spam F1, then precision, then smaller C",
+  "tfidf": "Reused original NB training-fitted vectorizer; no refit",
+  "seed": 42,
+  "solver": "liblinear",
+  "max_iter": 1000,
+  "training_sha256": "d9ae8c2f2abade2d87467971ae4c72493d01bde36d29f3182b4623018b6d755d"
+}

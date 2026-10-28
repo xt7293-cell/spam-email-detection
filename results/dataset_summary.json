@@ -1,0 +1,28 @@
+{
+  "name": "Enron-Spam email collection (supplied CSVs)",
+  "total": 30482,
+  "splits": {
+    "train": {
+      "rows": 21487,
+      "legitimate": 11301,
+      "spam": 10186
+    },
+    "validation": {
+      "rows": 4496,
+      "legitimate": 2277,
+      "spam": 2219
+    },
+    "test": {
+      "rows": 4499,
+      "legitimate": 2326,
+      "spam": 2173
+    }
+  },
+  "source_note": "Dataset source documentation supplied in docs/contributions/enron_dataset_source_and_overview.docx; original download URL not independently verified.",
+  "overlap": {
+    "train_validation_unique": 1,
+    "train_test_unique": 3,
+    "validation_test_unique": 0
+  },
+  "near_duplicate_audit": "Not exhaustive; original fixed splits retained."
+}
