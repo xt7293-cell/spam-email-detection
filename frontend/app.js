@@ -440,6 +440,7 @@ function attachSentenceTooltip(mark, sentence, score) {
     tooltipOwner = mark;
     impactTooltip.replaceChildren();
     const delta = sentence.delta * 100;
+    impactTooltip.dataset.direction = Math.abs(delta) <= 0.05 ? "neutral" : delta > 0 ? "spam" : "legitimate";
     const direction =
       Math.abs(delta) <= 0.05
         ? "Little change"

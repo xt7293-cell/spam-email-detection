@@ -5466,3 +5466,17 @@ body[data-page="results"] #cards .prediction-panel .explained-email {
   max-height: 16rem;
   overflow-y: auto;
 }
+
+/* Sentence pop-ups share the highlight palette. */
+.impact-tooltip {
+  --tooltip-accent: 112, 165, 255;
+  background: linear-gradient(rgba(var(--tooltip-accent), .1), rgba(var(--tooltip-accent), .1)), #101425;
+  border: 1px solid rgba(var(--tooltip-accent), .55);
+  border-radius: 8px;
+  box-shadow: 0 8px 28px #00000044;
+}
+.impact-tooltip[data-direction="spam"] { --tooltip-accent: 255, 112, 156; }
+.impact-tooltip[data-direction="legitimate"] { --tooltip-accent: 85, 237, 189; }
+.impact-tooltip[data-direction="neutral"] { --tooltip-accent: 112, 165, 255; }
+.impact-tooltip strong { color: rgb(var(--tooltip-accent)); }
+.impact-tooltip span { color: #c3c9de; }
