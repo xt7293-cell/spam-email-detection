@@ -1,3 +1,5 @@
+// DOM helpers and model definitions
+// ---------------------------------
 const $ = (id) => document.getElementById(id);
 const modelInfo = [
   {
@@ -19,20 +21,26 @@ const modelInfo = [
     color: "purple",
   },
 ];
+// Page state
+// ----------
 let hasResults = false,
   busy = false,
   submittedEmail = "",
   submittedSubject = "",
   resultVerdict = "neutral";
+// Navigation and input controls
+// -----------------------------
 function route() {
   const r = location.hash === "#results" && hasResults;
-  $("input-page").hidden = r;
+  const about = location.hash === "#about";
+  $("input-page").hidden = r || about;
+  $("about-page").hidden = !about;
   $("results-page").hidden = !r;
-  document.body.dataset.page = r ? "results" : "input";
+  document.body.dataset.page = about ? "about" : r ? "results" : "input";
   document.body.dataset.verdict = r ? resultVerdict : "neutral";
-  if ($("project-info")) $("project-info").hidden = r;
+  if ($("project-info")) $("project-info").hidden = r || about;
   for (const [id, active] of [
-    ["step1", !r],
+    ["step1", !r && !about],
     ["step2", r],
   ]) {
     const step = $(id);
@@ -41,11 +49,13 @@ function route() {
     else step.removeAttribute("aria-current");
   }
   window.scrollTo(0, 0);
-  if (r) $("results-page").focus({ preventScroll: true });
+  if (r) {
+    $("results-page").focus({ preventScroll: true });
+    requestAnimationFrame(fitComparisonPanels);
+  }
 }
 function count() {
-  $("count").textContent =
-    $("body").value.length.toLocaleString() + " characters";
+  $("count").textContent = $("body").value.length.toLocaleString() + " characters";
   $("error").textContent = "";
 }
 $("body").addEventListener("input", count);
@@ -73,6 +83,8 @@ function sample(spam) {
 }
 $("sample-spam").onclick = () => sample(true);
 $("sample-ham").onclick = () => sample(false);
+// Prediction cards and model agreement
+// ------------------------------------
 function show(results) {
   $("cards").replaceChildren();
   for (const [i, m] of modelInfo.entries()) {
@@ -108,8 +120,34 @@ function show(results) {
         "fine-print",
       );
     addScores(card, p);
+    const body = card.querySelector(".card-body");
+    const predictionPanel = node(
+      "section",
+      undefined,
+      body,
+      "comparison-panel prediction-panel",
+    );
+    predictionPanel.dataset.view = "prediction";
+    for (const child of [...body.children]) {
+      if (child !== predictionPanel && !child.classList.contains("performance-block"))
+        predictionPanel.append(child);
+    }
+    const performance = body.querySelector(".performance-block");
+    if (performance) {
+      performance.classList.add("comparison-panel");
+      performance.dataset.view = "results";
+    }
+    const matrixPanel = node("section", undefined, body, "comparison-panel matrix-panel");
+    matrixPanel.dataset.view = "matrix";
+    node(
+      "p",
+      ready ? "Loading saved matrix…" : "No matrix available for this model.",
+      matrixPanel,
+      "fine-print",
+    );
     $("cards").append(card);
   }
+  setComparisonView(0);
   const ready = results.filter((p) => p.status === "ready");
   const n = ready.filter((p) => p.label === 1).length;
   resultVerdict =
@@ -126,6 +164,8 @@ function show(results) {
         ? `${ready.length} available models disagree`
         : `${Math.max(n, ready.length - n)} of ${ready.length} available models predict ${n > ready.length / 2 ? "spam" : "legitimate"}`;
 }
+// Prediction request and form events
+// ----------------------------------
 $("form").addEventListener("submit", async (e) => {
   e.preventDefault();
   if (busy) return;
@@ -160,8 +200,7 @@ $("form").addEventListener("submit", async (e) => {
     }
     const data = await response.json();
     if (!response.ok) throw new Error(data.error || "Prediction failed.");
-    if (!Array.isArray(data.results))
-      throw new Error("Invalid prediction response.");
+    if (!Array.isArray(data.results)) throw new Error("Invalid prediction response.");
     submittedSubject = subject.trim();
     submittedEmail = (subject.trim() ? subject + "\n\n" : "") + body;
     show(data.results);
@@ -197,14 +236,15 @@ if (location.protocol !== "file:")
     .then((r) => r.json())
     .then((data) => {
       const n = data.models.filter((m) => m.status === "ready").length;
-      document.querySelector(".footnote").textContent =
-        `${n} of 3 models ready`;
+      document.querySelector(".footnote").textContent = `${n} of 3 models ready`;
     })
     .catch(() => {
       $("error").textContent =
         "Cannot reach the prediction server. Start python app/app.py.";
     });
 
+// Reusable DOM builders and saved evidence
+// ----------------------------------------
 let evidenceRequest;
 function node(tag, text, parent, cls) {
   const e = document.createElement(tag);
@@ -231,6 +271,8 @@ function getEvidence() {
       });
   return evidenceRequest;
 }
+// Model scores and performance
+// ----------------------------
 function addScores(card, result) {
   const body = card.querySelector(".card-body");
   const p = result.spam_probability;
@@ -240,22 +282,14 @@ function addScores(card, result) {
     node("p", "Model not connected.", score, "fine-print");
     return;
   }
-  const value = node(
-    "strong",
-    (p * 100).toFixed(2) + "%",
-    score,
-    "score-value",
-  );
+  const value = node("strong", (p * 100).toFixed(2) + "%", score, "score-value");
   const scoreHue = 120 * (1 - Math.max(0, Math.min(1, p)));
   const scoreColour = `hsl(${scoreHue.toFixed(2)} 85% 65%)`;
   value.style.color = scoreColour;
   value.style.textShadow = `0 0 20px ${scoreColour.replace("hsl(", "hsl(").replace(")", " / 0.15)")}`;
   const track = node("div", undefined, score, "prob-track");
   track.setAttribute("role", "img");
-  track.setAttribute(
-    "aria-label",
-    `Spam score ${(p * 100).toFixed(2)} percent`,
-  );
+  track.setAttribute("aria-label", `Spam score ${(p * 100).toFixed(2)} percent`);
   const fill = node("div", undefined, track);
   fill.style.width = p * 100 + "%";
   fill.style.background = scoreColour;
@@ -313,6 +347,10 @@ function addScores(card, result) {
         return;
       }
       renderMergedResults(model, perf);
+      const matrixPanel = card.querySelector(".matrix-panel");
+      matrixPanel.replaceChildren(perf.querySelector(".fixed-matrix"));
+      const matrixControls = perf.querySelector(".split-switch");
+      if (matrixControls) matrixPanel.prepend(matrixControls);
       node(
         "p",
         "Saved results · compare the same split. Different text features were used.",
@@ -344,8 +382,7 @@ function renderPerformance(e, parent, showTitle = true) {
       "aria-label",
       `${e.split} ${label} ${(e.metrics[key] * 100).toFixed(2)} percent`,
     );
-    node("div", undefined, track, "metric-fill").style.width =
-      e.metrics[key] * 100 + "%";
+    node("div", undefined, track, "metric-fill").style.width = e.metrics[key] * 100 + "%";
   }
   const axis = node("div", undefined, parent, "chart-axis");
   ["0", "25", "50", "75", "100%"].forEach((x) => node("span", x, axis));
@@ -384,6 +421,8 @@ function renderPerformance(e, parent, showTitle = true) {
 
 let impactTooltip;
 let tooltipOwner;
+// Sentence tooltips and influence
+// -------------------------------
 function hideImpactTooltip() {
   if (impactTooltip) impactTooltip.hidden = true;
   if (tooltipOwner) tooltipOwner.removeAttribute("aria-describedby");
@@ -477,6 +516,8 @@ function renderImpactSummary(explanation, parent) {
   }
 }
 
+// Charts and dataset overview
+// ---------------------------
 function renderDoughnut(e, parent) {
   const [[tn, fp], [fn, tp]] = e.matrix;
   const total = tn + fp + fn + tp;
@@ -521,6 +562,8 @@ function renderDoughnut(e, parent) {
     circle.setAttribute("aria-label", title);
     circle.append(s("title", {}, title));
     svg.append(circle);
+    circle.dataset.chartPercent = String(pct);
+    comparisonAnimationObserver.observe(circle);
     offset += pct;
   }
   svg.append(
@@ -547,7 +590,7 @@ function renderDoughnut(e, parent) {
         fill: "#a6b0d4",
         "font-size": 10,
       },
-      e.split + " emails",
+      e.split === "Validation" ? "Emails" : e.split + " emails",
     ),
   );
   const legend = node("div", undefined, wrap, "four-legend");
@@ -565,8 +608,8 @@ function renderProjectInfo(data) {
   if (document.getElementById("project-info")) return;
   const area = node("section", undefined, undefined, "project-info");
   area.id = "project-info";
-  area.hidden = location.hash === "#results" && hasResults;
-  document.querySelector("footer").before(area);
+  area.hidden = document.body.dataset.page !== "input";
+  $("input-page").append(area);
   const d = data.dataset;
   const heading = node("div", undefined, area, "project-heading");
   node("h2", "DATA / MODEL NOTES", heading);
@@ -609,7 +652,10 @@ function renderProjectInfo(data) {
     bar.style.background = color;
     bar.title = split.rows.toLocaleString() + " emails";
   }
-  const about = accordion(area, "ABOUT THE DATA & MODELS");
+  const aboutLink = node("a", "About the data & models ↗", area, "about-page-link");
+  aboutLink.href = "#about";
+  const about = $("about-content");
+  about.replaceChildren();
   node("p", d.name, about);
   const link = node("a", "Dataset source ↗", about);
   link.href = d.source_url;
@@ -628,6 +674,8 @@ getEvidence()
   .then(renderProjectInfo)
   .catch(() => {});
 
+// Detailed model results and matrices
+// -----------------------------------
 function renderMergedResults(model, parent) {
   node("h3", "RESULTS", parent);
   const evaluations = model.evaluations
@@ -635,12 +683,8 @@ function renderMergedResults(model, parent) {
     .sort((a, b) => (a.split === b.split ? 0 : a.split === "Test" ? -1 : 1));
   const legend = node("div", undefined, parent, "comparison-legend");
   for (const e of evaluations) {
-    const item = node(
-      "span",
-      e.split,
-      legend,
-      "split-legend " + e.split.toLowerCase(),
-    );
+    if (e.split !== "Validation")
+      node("span", e.split, legend, "split-legend " + e.split.toLowerCase());
   }
   for (const [key, label] of [
     ["accuracy", "Accuracy"],
@@ -660,12 +704,8 @@ function renderMergedResults(model, parent) {
         "aria-label",
         `${e.split} ${label}: ${(value * 100).toFixed(2)} percent`,
       );
-      node(
-        "div",
-        undefined,
-        track,
-        "metric-fill " + e.split.toLowerCase(),
-      ).style.width = value * 100 + "%";
+      node("div", undefined, track, "metric-fill " + e.split.toLowerCase()).style.width =
+        value * 100 + "%";
       node("strong", (value * 100).toFixed(2) + "%", row);
     }
   }
@@ -703,6 +743,7 @@ function renderMergedResults(model, parent) {
   }
   evaluations.forEach((e, i) => {
     const button = node("button", e.split, controls);
+    if (evaluations.length === 1 && e.split === "Validation") controls.hidden = true;
     button.type = "button";
     button.id = model.id + "-split-" + i;
     button.setAttribute("role", "tab");
@@ -721,23 +762,17 @@ function renderMergedResults(model, parent) {
     buttons.push(button);
   });
   if (evaluations.length) select(evaluations[0], 0);
-  node(
-    "p",
-    "Test and validation shown together, never pooled.",
-    parent,
-    "fine-print",
-  );
+  node("p", "Test and validation shown together, never pooled.", parent, "fine-print");
 }
 
 function drawSelectedMatrix(e, parent) {
   const axis = node("div", undefined, parent, "matrix-axis");
-  node("span", e.split + " set", axis);
+  node("span", e.split === "Validation" ? "Evaluation set" : e.split + " set", axis);
   node("span", "Predicted →", axis);
   const table = node("table", undefined, parent, "matrix-table");
   table.setAttribute(
     "aria-label",
-    e.split +
-      " confusion matrix, actual classes in rows, predictions in columns",
+    e.split + " confusion matrix, actual classes in rows, predictions in columns",
   );
   const head = node("tr", undefined, node("thead", undefined, table));
   for (const label of ["Actual ↓", "Legit", "SPAM"]) {
@@ -767,12 +802,20 @@ function drawSelectedMatrix(e, parent) {
       const ratio = total ? count / total : 0;
       tile.style.setProperty("--cell-weight", String(0.08 + ratio * 0.18));
       node("span", code, tile, "matrix-code");
-      node("strong", count.toLocaleString(), tile, "matrix-count");
+      const countLabel = node("strong", count.toLocaleString(), tile, "matrix-count");
+      countLabel.dataset.targetCount = String(count);
+      countLabel.setAttribute("aria-label", count.toLocaleString());
+      comparisonAnimationObserver.observe(countLabel);
       node("span", label, tile, "matrix-name");
       node("small", (ratio * 100).toFixed(2) + "%", tile, "matrix-share");
       tile.title = `${code}: ${label}, ${count} emails, ${(ratio * 100).toFixed(2)}% of actual ${i ? "spam" : "legitimate"} emails.`;
     });
   });
+  // Balance the row-label column so the four data cells sit in the card center.
+  for (const [index, row] of [...table.rows].entries()) {
+    const spacer = node(index === 0 ? "th" : "td", undefined, row, "matrix-spacer");
+    spacer.setAttribute("aria-hidden", "true");
+  }
   const legend = node("div", undefined, parent, "matrix-key");
   for (const [label, cls] of [
     ["Correct", "correct"],
@@ -783,16 +826,15 @@ function drawSelectedMatrix(e, parent) {
   node("p", "Percentages are within each actual class.", parent, "fine-print");
 }
 
+// Highlighted email text
+// ----------------------
 function renderExplainedEmail(explanation, parent, score) {
   const chars = Array.from(explanation.text);
   const subjectChars = Array.from(submittedSubject);
   const hasSubject =
-    submittedSubject.length > 0 &&
-    explanation.text.startsWith(submittedSubject + "\n");
+    submittedSubject.length > 0 && explanation.text.startsWith(submittedSubject + "\n");
   const email = node("div", undefined, parent, "sentence-email explained-email");
-  const title = hasSubject
-    ? node("p", undefined, email, "explained-subject")
-    : null;
+  const title = hasSubject ? node("p", undefined, email, "explained-subject") : null;
   function range(target, start, end) {
     let cursor = start;
     for (const sentence of explanation.sentences) {
@@ -800,9 +842,7 @@ function renderExplainedEmail(explanation, parent, score) {
         to = Math.min(end, sentence.end);
       if (to <= from) continue;
       if (from > cursor)
-        target.append(
-          document.createTextNode(chars.slice(cursor, from).join("")),
-        );
+        target.append(document.createTextNode(chars.slice(cursor, from).join("")));
       const tone =
         sentence.delta > 0.0005
           ? "toward-spam"
@@ -818,7 +858,7 @@ function renderExplainedEmail(explanation, parent, score) {
       mark.tabIndex = 0;
       mark.style.setProperty(
         "--influence",
-        String(0.12 + Math.min(1, Math.abs(sentence.delta) / 0.15) * 0.35),
+        String(0.2 + Math.min(1, Math.abs(sentence.delta) / 0.15) * 0.2),
       );
       const description = `Removing this sentence changes the spam score from ${(score * 100).toFixed(2)}% to ${(sentence.without_score * 100).toFixed(2)}%.`;
       mark.setAttribute("aria-label", mark.textContent + " " + description);
@@ -834,20 +874,32 @@ function renderExplainedEmail(explanation, parent, score) {
 }
 
 // Give each visible title its own irregular glitch rhythm.
+// Optional title animation
+// ------------------------
 function startTitleGlitches() {
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   for (const title of document.querySelectorAll("#input-title, #results-title")) {
     let timer;
     function schedule() {
-      timer = window.setTimeout(() => {
-        if (!reducedMotion.matches && !document.hidden && title.getClientRects().length) {
-          const strength = 0.6 + Math.random() * 1.1;
-          title.style.setProperty("--glitch-strength", String(strength));
-          title.style.setProperty("--glitch-duration", `${180 + Math.random() * 260}ms`);
-          title.classList.add("is-glitching");
-        }
-        schedule();
-      }, 1000 + Math.random() * 3000);
+      timer = window.setTimeout(
+        () => {
+          if (
+            !reducedMotion.matches &&
+            !document.hidden &&
+            title.getClientRects().length
+          ) {
+            const strength = 0.6 + Math.random() * 1.1;
+            title.style.setProperty("--glitch-strength", String(strength));
+            title.style.setProperty(
+              "--glitch-duration",
+              `${180 + Math.random() * 260}ms`,
+            );
+            title.classList.add("is-glitching");
+          }
+          schedule();
+        },
+        1000 + Math.random() * 3000,
+      );
     }
     title.addEventListener("animationend", (event) => {
       if (event.animationName === "random-title-glitch") {
@@ -863,3 +915,128 @@ function startTitleGlitches() {
   }
 }
 startTitleGlitches();
+
+// Full-screen comparison: scroll cycles all three models through the same view.
+const comparisonViews = ["prediction", "results", "matrix"];
+let comparisonViewIndex = 0;
+let comparisonWheelTime = 0;
+let comparisonWheelDelta = 0;
+function setComparisonView(index) {
+  comparisonViewIndex = (index + comparisonViews.length) % comparisonViews.length;
+  const view = comparisonViews[comparisonViewIndex];
+  $("results-page").dataset.view = view;
+  document.querySelectorAll(".comparison-panel").forEach((panel) => {
+    panel.hidden = panel.dataset.view !== view;
+  });
+  document.querySelectorAll("[data-comparison-view]").forEach((button, i) => {
+    button.setAttribute("aria-pressed", String(i === comparisonViewIndex));
+  });
+  requestAnimationFrame(fitComparisonPanels);
+}
+function fitComparisonPanels() {
+  if (document.body.dataset.page !== "results") return;
+  document.querySelectorAll(".comparison-panel:not([hidden])").forEach((panel) => {
+    panel.style.zoom = 1;
+    const bodyStyle = getComputedStyle(panel.parentElement);
+    const available =
+      panel.parentElement.clientHeight -
+      parseFloat(bodyStyle.paddingTop) -
+      parseFloat(bodyStyle.paddingBottom);
+    if (panel.scrollHeight > available)
+      panel.style.zoom = Math.max(0.1, available / panel.scrollHeight);
+  });
+}
+document.querySelectorAll("[data-comparison-view]").forEach((button, index) => {
+  button.addEventListener("click", () => setComparisonView(index));
+});
+window.addEventListener(
+  "wheel",
+  (event) => {
+    if (document.body.dataset.page !== "results" || event.ctrlKey) return;
+    if (event.target.closest(".sentence-email, .explained-email")) return;
+    event.preventDefault();
+    const now = performance.now();
+    if (now - comparisonWheelTime < 650) return;
+    comparisonWheelDelta += event.deltaY * (event.deltaMode === 1 ? 16 : 1);
+    if (Math.abs(comparisonWheelDelta) < 35) return;
+    setComparisonView(comparisonViewIndex + Math.sign(comparisonWheelDelta));
+    comparisonWheelTime = now;
+    comparisonWheelDelta = 0;
+  },
+  { passive: false },
+);
+window.addEventListener("keydown", (event) => {
+  if (
+    document.body.dataset.page !== "results" ||
+    event.target.closest("button, input, textarea, select, [role=tab]")
+  )
+    return;
+  if (["ArrowDown", "PageDown", "ArrowUp", "PageUp"].includes(event.key)) {
+    event.preventDefault();
+    setComparisonView(
+      comparisonViewIndex + (["ArrowDown", "PageDown"].includes(event.key) ? 1 : -1),
+    );
+  }
+});
+let comparisonTouchY = null;
+$("results-page").addEventListener(
+  "touchstart",
+  (event) => {
+    comparisonTouchY = event.target.closest(".sentence-email, .explained-email")
+      ? null
+      : event.touches[0].clientY;
+  },
+  { passive: true },
+);
+$("results-page").addEventListener("touchend", (event) => {
+  if (comparisonTouchY === null) return;
+  const delta = comparisonTouchY - event.changedTouches[0].clientY;
+  if (Math.abs(delta) > 45) setComparisonView(comparisonViewIndex + Math.sign(delta));
+  comparisonTouchY = null;
+});
+new MutationObserver(() => requestAnimationFrame(fitComparisonPanels)).observe(
+  $("cards"),
+  { childList: true, subtree: true },
+);
+window.addEventListener("resize", fitComparisonPanels);
+
+// Animate charts and counts only when their comparison panel becomes visible.
+const comparisonAnimationFrames = new WeakMap();
+const comparisonAnimationObserver = new IntersectionObserver(
+  (entries) => {
+    for (const entry of entries) {
+      const element = entry.target;
+      cancelAnimationFrame(comparisonAnimationFrames.get(element));
+      if (!element.isConnected) {
+        comparisonAnimationObserver.unobserve(element);
+        continue;
+      }
+      const chart = element.dataset.chartPercent !== undefined;
+      const target = Number(
+        chart ? element.dataset.chartPercent : element.dataset.targetCount,
+      );
+      const render = (progress) => {
+        const value = target * progress;
+        if (chart) element.setAttribute("stroke-dasharray", `${value} ${100 - value}`);
+        else element.textContent = Math.round(value).toLocaleString();
+      };
+      if (
+        !entry.isIntersecting ||
+        matchMedia("(prefers-reduced-motion: reduce)").matches
+      ) {
+        render(1);
+        continue;
+      }
+      const start = performance.now();
+      render(0);
+      function frame(now) {
+        const progress = Math.min(1, (now - start) / 850);
+        render(1 - Math.pow(1 - progress, 3));
+        if (progress < 1)
+          comparisonAnimationFrames.set(element, requestAnimationFrame(frame));
+      }
+      comparisonAnimationFrames.set(element, requestAnimationFrame(frame));
+    }
+  },
+  { threshold: 0.1 },
+);

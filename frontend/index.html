@@ -3,18 +3,22 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Mailwise | Email spam detection</title>
+    <title>mailCheck | Email spam detection</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css?v=model-colors1" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css?v=larger-verdict49" />
   </head>
   <body>
     <a class="skip-link" href="#subject"> Skip to email input </a>
+    <!-- Site header -->
     <header>
       <a href="#input-page" class="brand">
         <b class="mail-mark"> ▧ </b>
-        Mailwise
+        mailCheck
         <span> / lab </span>
       </a>
       <div class="header-right">
@@ -22,15 +26,16 @@
           <span class="signal-dot" aria-hidden="true"> ● </span>
           LOCAL INFERENCE
         </span>
-        <a class="nav-action" href="#input-page"> CHECK AN EMAIL ↗ </a>
       </div>
     </header>
     <main>
+      <!-- Page navigation -->
       <nav aria-label="Analysis progress">
         <span id="step1"> 01 &nbsp; Compose input </span>
         <i> </i>
         <span id="step2"> 02 &nbsp; Compare models </span>
       </nav>
+      <!-- Compose email -->
       <section id="input-page" aria-labelledby="input-title">
         <div class="intro-block">
           <div class="eyebrow">EMAIL SPAM DETECTION</div>
@@ -40,10 +45,6 @@
             Three perspectives
             <span> . </span>
           </h1>
-          <p class="lead">
-            Paste a message, run the available models, and compare their
-            predictions side by side.
-          </p>
         </div>
         <div class="workspace">
           <form id="form" aria-labelledby="form-title">
@@ -69,63 +70,51 @@
               aria-describedby="count"
               id="body"
               maxlength="50000"
-              placeholder="Paste your email here…&#10;&#10;Include the message body so each model has the same information to work with."
+              placeholder="Paste your email here…"
               required
             ></textarea>
             <div class="label-row privacy">
-              <span> Sent only to your local prediction server </span>
-              <button type="button" id="clear" class="text-btn">
-                Clear input
-              </button>
+              <button type="button" id="clear" class="text-btn">Clear input</button>
             </div>
             <p id="error" role="alert"></p>
             <button type="submit" class="primary">
               Analyse email
               <span> ↗ </span>
             </button>
-            <p class="footnote">
-              Saved models · Availability checked on startup
-            </p>
+            <p class="footnote">Saved models · Availability checked on startup</p>
           </form>
           <aside aria-labelledby="models-title">
             <div class="panel-heading">
               <h2 id="models-title">2. Compare the models</h2>
               <small> 3 classifiers </small>
             </div>
-            <p class="aside-intro">
-              Each model checks the same email using a different approach.
-            </p>
-            <article>
-              <b class="number green"> 01 </b>
-              <div>
-                <h3>Naive Bayes</h3>
+            <article class="model-summary">
+<div>
+<div class="model-summary-heading"><h3>Naive Bayes</h3><b class="number green">01</b></div>
+
                 <small> THE PROBABILISTIC APPROACH </small>
-                <p>
-                  Weighs how words are associated with spam and legitimate
-                  email.
-                </p>
-              </div>
-            </article>
-            <article>
-              <b class="number blue"> 02 </b>
-              <div>
-                <h3>Logistic regression</h3>
+                <p>Weighs how words are associated with spam and legitimate email.</p>
+              
+</div>
+</article>
+            <article class="model-summary">
+<div>
+<div class="model-summary-heading"><h3>Logistic regression</h3><b class="number blue">02</b></div>
+
                 <small> THE LINEAR APPROACH </small>
-                <p>
-                  Combines weighted text features into a classification score.
-                </p>
-              </div>
-            </article>
-            <article>
-              <b class="number purple"> 03 </b>
-              <div>
-                <h3>Neural network</h3>
+                <p>Combines weighted text features into a classification score.</p>
+              
+</div>
+</article>
+            <article class="model-summary">
+<div>
+<div class="model-summary-heading"><h3>Neural network</h3><b class="number purple">03</b></div>
+
                 <small> THE NONLINEAR APPROACH </small>
-                <p>
-                  Learns patterns through connected layers of text features.
-                </p>
-              </div>
-            </article>
+                <p>Learns patterns through connected layers of text features.</p>
+              
+</div>
+</article>
             <div class="sample-box">
               <h3>Try an example</h3>
               <p>Fill the form with a sample, then select Analyse email.</p>
@@ -136,54 +125,59 @@
             </div>
           </aside>
         </div>
-        <p class="notice">
-          Your local models analyse the email. Missing models stay unconnected.
-        </p>
       </section>
-      <section
-        id="results-page"
-        hidden
-        tabindex="-1"
-        aria-labelledby="results-title"
-      >
+      <section id="about-page" hidden aria-labelledby="about-title">
+        <div class="results-heading">
+          <h1 id="about-title">About the data &amp; models</h1>
+          <a class="secondary" href="#input-page">← Back to compose</a>
+        </div>
+        <div id="about-content"><p>Loading data and model notes…</p></div>
+      </section>
+      <section id="results-page" hidden tabindex="-1" aria-labelledby="results-title">
         <div class="eyebrow">THREE MODELS. ONE MESSAGE.</div>
         <div class="results-heading">
           <h1 id="results-title">
             Your results
             <span> . </span>
           </h1>
-          <button class="secondary" id="edit">← Edit email</button>
+          <div class="comparison-navigation" aria-label="Comparison views">
+            <div class="comparison-view-buttons">
+              <button type="button" data-comparison-view="prediction" aria-pressed="true">
+                Spam prediction
+              </button>
+              <button type="button" data-comparison-view="results" aria-pressed="false">
+                Results
+              </button>
+              <button type="button" data-comparison-view="matrix" aria-pressed="false">
+                Matrix
+              </button>
+            </div>
+          </div>
+          <div class="results-heading-actions">
+            <button class="secondary" id="edit">← Edit email</button>
+            <button class="primary" id="another">
+              Check another email
+              <span> ↗ </span>
+            </button>
+          </div>
         </div>
-        <p class="lead">See which sentences influenced each prediction.</p>
-        <div class="warning">
-          <span class="signal-dot" aria-hidden="true"> ● </span>
-          <strong> Prediction results </strong>
-          Available models are shown below. Unavailable models cannot provide a
-          prediction.
-        </div>
+
         <div id="cards"></div>
         <div class="agreement">
           <span> ≋ </span>
           <div>
             <div class="eyebrow">MODEL AGREEMENT</div>
             <h2 id="agreement"></h2>
-            <p>Page tint follows the majority prediction, not ground truth.</p>
           </div>
         </div>
-        <div class="actions">
-          <span> Ready for another email? </span>
-          <button class="primary" id="another">
-            Check another email
-            <span> ↗ </span>
-          </button>
-        </div>
       </section>
+      <!-- Site footer -->
       <footer>
-        <strong> mailwise / lab </strong>
+        <strong> mailCheck / lab </strong>
         <span> Spam detection, thoughtfully compared. </span>
-        <span> CSCI323 · Model comparison </span>
+        <a href="#about">About the data &amp; models ↗</a>
       </footer>
     </main>
-    <script src="app.js?v=random-glitch1"></script>
+    <script src="app.js?v=larger-verdict49"></script>
   </body>
 </html>

@@ -21,3 +21,6 @@ src/neural_network/nn_artifacts/predictions/*.csv
 data/*_submission/*.csv
 src/logistic_regression/artifacts/*.csv
 src/neural_network/nn_artifacts/experiments/
+
+# Local formatting tools and cleanup snapshots.
+work/
