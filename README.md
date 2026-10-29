@@ -11,7 +11,7 @@ cd D:\GitHub\spam-email-detection
 python start.py
 ```
 
-The launcher creates `.venv` if needed, installs missing dependencies for all three models, checks for the saved model files, and starts the local server. Use the same command for first-time setup and later launches. It does not train or download models; a fresh Git clone needs the supplied model files restored separately.
+The launcher creates `.venv` if needed, installs missing dependencies for all three models, checks for the saved model files, and starts the local server. Use the same command for first-time setup and later launches. The four saved runtime models are included in Git, so a fresh clone includes everything needed for inference once these files have been committed and pushed. The launcher installs dependencies; it does not retrain models.
 
 Open [http://127.0.0.1:8000](http://127.0.0.1:8000). Keep the terminal open and press **Ctrl+C** to stop.
 
@@ -60,9 +60,27 @@ python src/naive_bayes/train_model_1.py --data-dir data/splits --output-dir src/
 
 The neural training script is preserved, including its original relative paths. Adapt DATA_DIR and ARTIFACTS_DIR before deliberately retraining; do not import the training script from the web application because its training runs at module scope.
 
-## GitHub
+## Clone or pull and run
 
-Large datasets and model binaries are ignored by `.gitignore` and remain local. This means a fresh Git clone needs the documented artifacts restored separately before inference. Do not commit real private email content. The neural model is approximately 62 MB; use a suitable artifact distribution method if sharing it. No Git push is performed by the installer.
+Saved runtime models are included through explicit exceptions in `.gitignore`. Experimental models, training data, and the local `.venv` remain excluded. Commit and push the four model files with the repository changes once to make them available on other computers.
+
+On macOS, after cloning the repository:
+
+```bash
+cd /path/to/spam-email-detection
+git pull
+python3 start.py
+```
+
+On Windows:
+
+```powershell
+cd D:\GitHub\spam-email-detection
+git pull
+python start.py
+```
+
+Python must already be installed. Internet access is needed for the first dependency installation. Each computer creates its own `.venv`; do not copy a Windows environment onto a Mac.
 
 ## Validation
 

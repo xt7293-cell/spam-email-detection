@@ -5,7 +5,7 @@ __pycache__/
 .DS_Store
 __MACOSX/
 .cache/
-# Keep large datasets and model binaries locally; document their provenance.
+# Ignore experimental binaries; include the four runtime models below.
 *.joblib
 *.keras
 *.h5
@@ -24,3 +24,12 @@ src/neural_network/nn_artifacts/experiments/
 
 # Local formatting tools and cleanup snapshots.
 work/
+
+# Local model transfer archive.
+outputs/mailcheck-models.zip
+
+# Runtime models are included so a clone/pull can run without a separate transfer.
+!src/naive_bayes/artifacts/naive_bayes_pipeline.joblib
+!src/logistic_regression/artifacts/logistic_regression_pipeline.joblib
+!src/neural_network/nn_artifacts/model/spam_nn.keras
+!src/neural_network/nn_artifacts/model/tfidf_vectorizer.joblib
