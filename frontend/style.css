@@ -5480,3 +5480,13 @@ body[data-page="results"] #cards .prediction-panel .explained-email {
 .impact-tooltip[data-direction="neutral"] { --tooltip-accent: 112, 165, 255; }
 .impact-tooltip strong { color: rgb(var(--tooltip-accent)); }
 .impact-tooltip span { color: #c3c9de; }
+
+/* Display the whole interface at eighty percent of its original scale. */
+html { zoom: .8; }
+body[data-page="results"] { height: 125dvh; }
+@media (min-width: 900px) and (min-height: 700px) {
+  body[data-page="input"] { height: 125dvh; }
+}
+@media (max-width: 900px), (max-height: 700px) {
+  body[data-page="results"] { height: auto; min-height: 125dvh; }
+}
