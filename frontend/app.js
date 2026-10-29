@@ -916,11 +916,9 @@ function startTitleGlitches() {
 }
 startTitleGlitches();
 
-// Full-screen comparison: scroll cycles all three models through the same view.
+// Comparison buttons switch all three models to the selected view.
 const comparisonViews = ["prediction", "results", "matrix"];
 let comparisonViewIndex = 0;
-let comparisonWheelTime = 0;
-let comparisonWheelDelta = 0;
 function setComparisonView(index) {
   comparisonViewIndex = (index + comparisonViews.length) % comparisonViews.length;
   const view = comparisonViews[comparisonViewIndex];
@@ -938,73 +936,40 @@ function usePageScroll() {
 }
 
 function fitComparisonPanels() {
-  if (document.body.dataset.page !== "results") return;
-  document.querySelectorAll(".comparison-panel:not([hidden])").forEach((panel) => {
-    panel.style.zoom = 1;
-    if (usePageScroll()) return;
-    const bodyStyle = getComputedStyle(panel.parentElement);
-    const available =
-      panel.parentElement.clientHeight -
-      parseFloat(bodyStyle.paddingTop) -
-      parseFloat(bodyStyle.paddingBottom);
-    if (panel.scrollHeight > available)
-      panel.style.zoom = Math.max(0.1, available / panel.scrollHeight);
+  document.querySelectorAll(".comparison-panel").forEach((panel) => {
+    panel.style.removeProperty("zoom");
   });
 }
+
 document.querySelectorAll("[data-comparison-view]").forEach((button, index) => {
   button.addEventListener("click", () => setComparisonView(index));
-});
-window.addEventListener(
-  "wheel",
-  (event) => {
-    if (document.body.dataset.page !== "results" || event.ctrlKey || usePageScroll()) return;
-    if (event.target.closest(".sentence-email, .explained-email")) return;
-    event.preventDefault();
-    const now = performance.now();
-    if (now - comparisonWheelTime < 650) return;
-    comparisonWheelDelta += event.deltaY * (event.deltaMode === 1 ? 16 : 1);
-    if (Math.abs(comparisonWheelDelta) < 35) return;
-    setComparisonView(comparisonViewIndex + Math.sign(comparisonWheelDelta));
-    comparisonWheelTime = now;
-    comparisonWheelDelta = 0;
-  },
-  { passive: false },
-);
-window.addEventListener("keydown", (event) => {
-  if (usePageScroll()) return;
-  if (
-    document.body.dataset.page !== "results" ||
-    event.target.closest("button, input, textarea, select, [role=tab]")
-  )
-    return;
-  if (["ArrowDown", "PageDown", "ArrowUp", "PageUp"].includes(event.key)) {
-    event.preventDefault();
-    setComparisonView(
-      comparisonViewIndex + (["ArrowDown", "PageDown"].includes(event.key) ? 1 : -1),
-    );
-  }
-});
-let comparisonTouchY = null;
-$("results-page").addEventListener(
-  "touchstart",
-  (event) => {
-    comparisonTouchY = event.target.closest(".sentence-email, .explained-email")
-      ? null
-      : event.touches[0].clientY;
-  },
-  { passive: true },
-);
-$("results-page").addEventListener("touchend", (event) => {
-  if (comparisonTouchY === null || usePageScroll()) return;
-  const delta = comparisonTouchY - event.changedTouches[0].clientY;
-  if (Math.abs(delta) > 45) setComparisonView(comparisonViewIndex + Math.sign(delta));
-  comparisonTouchY = null;
 });
 new MutationObserver(() => requestAnimationFrame(fitComparisonPanels)).observe(
   $("cards"),
   { childList: true, subtree: true },
 );
 window.addEventListener("resize", fitComparisonPanels);
+
+// Outside the model cards, a deliberate wheel gesture cycles comparison views.
+let outsideWheelLastEvent = 0;
+let outsideWheelAccumulated = 0;
+let outsideWheelLastSwitch = 0;
+window.addEventListener("wheel", (event) => {
+  if (document.body.dataset.page !== "results" || event.ctrlKey) return;
+  if (event.target.closest("#cards, .impact-tooltip")) return;
+  if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+  event.preventDefault();
+  const now = performance.now();
+  const delta = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1);
+  if (now - outsideWheelLastEvent > 180 || Math.sign(delta) !== Math.sign(outsideWheelAccumulated)) outsideWheelAccumulated = 0;
+  outsideWheelLastEvent = now;
+  if (now - outsideWheelLastSwitch < 650) return;
+  outsideWheelAccumulated += delta;
+  if (Math.abs(outsideWheelAccumulated) < 40) return;
+  setComparisonView(comparisonViewIndex + Math.sign(outsideWheelAccumulated));
+  outsideWheelLastSwitch = now;
+  outsideWheelAccumulated = 0;
+}, { passive: false });
 
 // Animate charts and counts only when their comparison panel becomes visible.
 const comparisonAnimationFrames = new WeakMap();

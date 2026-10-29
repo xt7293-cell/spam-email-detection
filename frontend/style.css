@@ -5440,3 +5440,29 @@ body[data-page="results"] #cards .prediction {
   body[data-page="results"] #cards .card-body { padding: 1rem; }
   body[data-page="results"] #cards .selected-confusion .four-outcome-chart { grid-template-columns: 7rem minmax(0, 1fr); }
 }
+
+/* Keep short explained emails comfortable to read. */
+body[data-page="results"] #cards .prediction-panel .explained-email {
+  min-height: 8rem;
+}
+
+/* Preserve readable content sizes when the model boxes have less height. */
+body[data-page="results"] #cards .card-body {
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #ad89ff80 transparent;
+  overscroll-behavior: contain;
+}
+body[data-page="results"] #cards .prediction-panel:not([hidden]) {
+  height: auto;
+}
+body[data-page="results"] #cards .prediction-panel .sentence-section {
+  flex: none;
+}
+body[data-page="results"] #cards .prediction-panel .explained-email {
+  flex: none;
+  min-height: 8rem;
+  max-height: 16rem;
+  overflow-y: auto;
+}
