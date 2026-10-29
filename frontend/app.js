@@ -933,10 +933,15 @@ function setComparisonView(index) {
   });
   requestAnimationFrame(fitComparisonPanels);
 }
+function usePageScroll() {
+  return matchMedia("(max-width: 900px), (max-height: 700px)").matches;
+}
+
 function fitComparisonPanels() {
   if (document.body.dataset.page !== "results") return;
   document.querySelectorAll(".comparison-panel:not([hidden])").forEach((panel) => {
     panel.style.zoom = 1;
+    if (usePageScroll()) return;
     const bodyStyle = getComputedStyle(panel.parentElement);
     const available =
       panel.parentElement.clientHeight -
@@ -952,7 +957,7 @@ document.querySelectorAll("[data-comparison-view]").forEach((button, index) => {
 window.addEventListener(
   "wheel",
   (event) => {
-    if (document.body.dataset.page !== "results" || event.ctrlKey) return;
+    if (document.body.dataset.page !== "results" || event.ctrlKey || usePageScroll()) return;
     if (event.target.closest(".sentence-email, .explained-email")) return;
     event.preventDefault();
     const now = performance.now();
@@ -966,6 +971,7 @@ window.addEventListener(
   { passive: false },
 );
 window.addEventListener("keydown", (event) => {
+  if (usePageScroll()) return;
   if (
     document.body.dataset.page !== "results" ||
     event.target.closest("button, input, textarea, select, [role=tab]")
@@ -989,7 +995,7 @@ $("results-page").addEventListener(
   { passive: true },
 );
 $("results-page").addEventListener("touchend", (event) => {
-  if (comparisonTouchY === null) return;
+  if (comparisonTouchY === null || usePageScroll()) return;
   const delta = comparisonTouchY - event.changedTouches[0].clientY;
   if (Math.abs(delta) > 45) setComparisonView(comparisonViewIndex + Math.sign(delta));
   comparisonTouchY = null;
