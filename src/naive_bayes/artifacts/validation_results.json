@@ -1,5 +1,5 @@
 {
-  "created_utc": "2026-10-25T10:01:16.794639+00:00",
+  "created_utc": "2026-10-29T03:52:33.684031+00:00",
   "evaluation_split": "validation",
   "test_evaluated": false,
   "positive_label": 1,
@@ -19,11 +19,11 @@
     "alpha": 1.0,
     "max_features": 50000,
     "vocabulary_size": 50000,
-    "vectorizer_fit_seconds": 3.7878491999999824,
-    "classifier_fit_seconds": 0.009885399999802758,
-    "total_fit_seconds": 3.797734599999785,
-    "validation_transform_seconds": 0.7313232999999855,
-    "classifier_predict_seconds": 0.002165699999750359,
+    "vectorizer_fit_seconds": 1.6881646669935435,
+    "classifier_fit_seconds": 0.003979208006057888,
+    "total_fit_seconds": 1.6921438749996014,
+    "validation_transform_seconds": 0.35668149999401066,
+    "classifier_predict_seconds": 0.0014498340024147183,
     "n": 4496,
     "accuracy": 0.9870996441281139,
     "precision": 0.9891353553644183,
@@ -35,8 +35,8 @@
     "tp": 2185,
     "false_positive_rate": 0.010540184453227932,
     "false_negative_rate": 0.015322217214961695,
-    "roc_auc": 0.9989035484852244,
-    "average_precision": 0.9987245372985547
+    "roc_auc": 0.9989023609926093,
+    "average_precision": 0.9987230968044079
   },
   "selected": {
     "experiment_id": 1,
@@ -46,11 +46,11 @@
     "alpha": 0.1,
     "max_features": 50000,
     "vocabulary_size": 50000,
-    "vectorizer_fit_seconds": 3.7878491999999824,
-    "classifier_fit_seconds": 0.22505679999994754,
-    "total_fit_seconds": 4.01290599999993,
-    "validation_transform_seconds": 0.7313232999999855,
-    "classifier_predict_seconds": 0.0022080000003370515,
+    "vectorizer_fit_seconds": 1.6881646669935435,
+    "classifier_fit_seconds": 0.011884500010637566,
+    "total_fit_seconds": 1.700049167004181,
+    "validation_transform_seconds": 0.35668149999401066,
+    "classifier_predict_seconds": 0.0015520829911110923,
     "n": 4496,
     "accuracy": 0.9891014234875445,
     "precision": 0.9891794409377818,
@@ -62,8 +62,8 @@
     "tp": 2194,
     "false_positive_rate": 0.010540184453227932,
     "false_negative_rate": 0.011266336187471835,
-    "roc_auc": 0.9991355053760761,
-    "average_precision": 0.9990713035863734
+    "roc_auc": 0.9991351095452041,
+    "average_precision": 0.9990707091574008
   },
   "tfidf_config": {
     "ngram_range": [
@@ -86,8 +86,8 @@
     "tp": 2194,
     "false_positive_rate": 0.01054481546572935,
     "false_negative_rate": 0.011266336187471835,
-    "roc_auc": 0.9991351255453975,
-    "average_precision": 0.9990713035863734
+    "roc_auc": 0.9991347295406108,
+    "average_precision": 0.9990707091574008
   },
   "majority_baseline": {
     "predicted_label": 0,
@@ -106,19 +106,19 @@
   "validation_zero_feature_rows": 0,
   "save_reload_predictions_and_probabilities_identical": true,
   "fit_scope": "training only; no refit on combined train and validation",
-  "total_run_seconds": 72.32305409999981,
+  "total_run_seconds": 35.36816091700166,
   "environment": {
-    "python": "3.12.14",
+    "python": "3.13.7",
     "sklearn": "1.9.1",
     "numpy": "2.5.4",
     "pandas": "3.1.0",
     "joblib": "1.6.0",
-    "platform": "Windows-11-10.0.26300-SP0",
-    "processor": "Intel64 Family 6 Model 141 Stepping 1, GenuineIntel"
+    "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+    "processor": "arm"
   },
   "source_sha256": {
     "preprocessing.py": "1d36dd5b66ddc8ff2c8549b16c34416e736a13fc7b856f0d356976ec456d4f54",
     "train_model_1.py": "fea970873fd0f24a48218b5e480b0a16cd03e3722bd9975c960106db4ad87013"
   },
-  "pipeline_sha256": "3adbba740919ff6f9b4e8b00045d30616769397cd835e25eb1bedda76bd5ecb2"
+  "pipeline_sha256": "d099802c4a998c560458f69545d50e59bc486cc8c2c76f2f216d50f489b8f125"
 }
