@@ -2,18 +2,26 @@
 
 Two-page email comparison website connected to the supplied saved models. Labels: 0 = legitimate, 1 = spam. Nothing trains when you start the website.
 
-## Start locally (Windows)
+## Start with the Python launcher (Windows)
 
-Use a Python version supported by your selected TensorFlow release. Create a virtual environment, activate it, then install dependencies:
+Install Python first, then run these commands in PowerShell:
 
-```
-python -m venv .venv
-.venv\Scripts\activate
-python -m pip install -r requirements.txt
-python app/app.py
+```powershell
+cd D:\GitHub\spam-email-detection
+python start.py
 ```
 
-Open http://127.0.0.1:8000. To enable the neural network, additionally install `requirements-neural.txt` before restarting the app. Errors and absent dependencies appear in the affected model card; the other models remain usable. The server listens only on your laptop. The frontend must be served by this Python application, not opened as a file or deployed alone to GitHub Pages.
+The launcher creates `.venv` if needed, installs missing dependencies for all three models, checks for the saved model files, and starts the local server. Use the same command for first-time setup and later launches. It does not train or download models; a fresh Git clone needs the supplied model files restored separately.
+
+Open [http://127.0.0.1:8000](http://127.0.0.1:8000). Keep the terminal open and press **Ctrl+C** to stop.
+
+```powershell
+# Verify setup and model loading without starting the server
+python start.py --check
+
+# Use a different port
+python start.py --port 8001
+```
 
 ## Important compatibility limits
 
