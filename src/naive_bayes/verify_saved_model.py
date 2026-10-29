@@ -18,14 +18,14 @@ def main():
     result = json.loads((artifact / "validation_results.json").read_text(encoding="utf-8"))
     manifest = json.loads((ROOT / "input_manifest.json").read_text(encoding="utf-8"))
     for name, record in manifest.items():
-        assert sha256(ROOT / "data" / name) == record["sha256"], name
+        assert sha256(ROOT.parents[1] / "data" / "splits" / name) == record["sha256"], name
     for name, digest in result["source_sha256"].items():
         assert sha256(ROOT / name) == digest, name
     model_file = artifact / "naive_bayes_pipeline.joblib"
     assert sha256(model_file) == result["pipeline_sha256"]
     model = joblib.load(model_file)
-    train = load_split(ROOT / "data" / "train.csv")
-    val = load_split(ROOT / "data" / "validation.csv")
+    train = load_split(ROOT.parents[1] / "data" / "splits" / "train.csv")
+    val = load_split(ROOT.parents[1] / "data" / "splits" / "validation.csv")
     prediction = model.predict(val.text)
     probability = model.predict_proba(val.text)[:, 1]
     reproduced = metrics(val.label, prediction, probability)
@@ -56,7 +56,10 @@ def main():
         "shared_vectorizer_available_as_pipeline_tfidf_step": True,
         "classifier_class_counts_match_training_only": True,
         "prediction_adapter_matches_pipeline": True,
-        "test_set_usage": "Not included in this Member 2 package; never read or evaluated",
+        "test_set_usage": (
+            "Not included in this Member 2 package. Training and this verifier never open it. "
+            "A separate all-split fingerprint audit checks integrity without test predictions or metrics."
+        ),
     }
     write_json(artifact / "verification.json", verification)
     print(json.dumps(verification, indent=2))

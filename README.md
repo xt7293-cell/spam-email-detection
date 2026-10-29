@@ -22,8 +22,8 @@ The submitted artifacts report scikit-learn 1.9.1, NumPy 2.5.4, and TensorFlow 2
 ## Model status
 
 - Naive Bayes: saved pipeline and custom `preprocessing.py` retained together under `src/naive_bayes`.
-- Logistic regression: not supplied. Add a trusted fitted text-to-label scikit-learn pipeline as `models/logistic_regression/pipeline.joblib`; restart the app. It must output integer 0/1 labels. No fallback prediction is invented.
-- Neural network: original Keras model and TF-IDF under `src/neural_network/nn_artifacts/model`. The saved validation-selected threshold is 0.7; loaded from results.json.
+- Logistic regression: supplied pipeline, preprocessing, training code, tests and validation evidence in `src/logistic_regression/`. Loaded directly by the app; no test scores are claimed.
+- Neural network: original Keras model and TF-IDF under `src/neural_network/nn_artifacts/model`. The decision threshold is loaded from the supplied results.json.
 
 Each model retains its own fitted text processor. The Naive Bayes and neural network use different TF-IDF configurations; these supplied experiments are not a controlled shared-vectorizer comparison. Do not refit a vectorizer during inference. Subject and body are joined with a newline; use complete raw email text with an empty subject if matching the dataset format requires it.
 
@@ -33,8 +33,8 @@ Each model retains its own fitted text processor. The Naive Bayes and neural net
 - `app/`: local HTTP server and model adapters.
 - `src/naive_bayes/`: original contribution, inference code, training code, tests, results and saved model.
 - `src/neural_network/`: original neural contribution, code, results and saved artifacts.
-- `src/logistic_regression/`: instructions for the missing model.
-- `data/processed/`: supplied model-package train, validation and test files, centralised without modification.
+- `src/logistic_regression/`: supplied logistic regression contribution and saved artifacts.
+- Previous `data/processed/` splits have been removed; use the newly imported contribution datasets.
 - `data/preparation_submission/`: separate preparation submission and its different CSV splits.
 - `docs/contributions/`: original contribution documents.
 - `docs/data_inventory.json`: source hashes, row counts and class counts.
@@ -47,7 +47,7 @@ The preparation-submission CSVs differ from the model-package CSVs. Preserve bot
 To rerun Naive Bayes deliberately, use:
 
 ```
-python src/naive_bayes/train_model_1.py --data-dir data/processed --output-dir src/naive_bayes/artifacts
+python src/naive_bayes/train_model_1.py --data-dir data/splits --output-dir src/naive_bayes/artifacts
 ```
 
 The neural training script is preserved, including its original relative paths. Adapt DATA_DIR and ARTIFACTS_DIR before deliberately retraining; do not import the training script from the web application because its training runs at module scope.
@@ -59,3 +59,25 @@ Large datasets and model binaries are ignored by `.gitignore` and remain local. 
 ## Validation
 
 The integration verifies syntax, input handling, unavailable-model behaviour, and preserved file hashes. Full saved-model inference requires compatible ML dependencies; those packages are absent from the bundled verification runtime. Original result files are evidence supplied by teammates, not newly reproduced results.
+
+## Latest import
+
+Desktop contributions were copied without modifying the originals. See `docs/latest_import.json` for file hashes. Previous differing files are recoverable in `.integration-backups/`. Distinct model-package CSVs are preserved under `data/splits/` and `data/splits/`; do not substitute older processed splits for retraining. Historical files in `results/` and older inventory documents predate this import. The website compares supplied validation metrics; these have not been reproduced by retraining.
+
+## File organization
+
+Current shared CSVs live in `data/splits/`; identical contribution copies have been consolidated. Data preparation materials remain in `data/preparation_submission/`. Each model keeps its code and fitted artifacts together under `src/`. Historical scripts and update notes live in `docs/archive/`; they may refer to removed datasets and are not current entry points. `.integration-backups/` contains recoverable previous files.
+
+## Training from shared data
+
+All training scripts resolve `data/splits/` from their own location, independent of the working directory. CSV columns are `text,label`; 0 is legitimate and 1 is spam.
+
+```powershell
+python src/naive_bayes/train_model_1.py
+python src/logistic_regression/train_model_2.py
+python src/neural_network/train_model_3.py tune
+python src/neural_network/train_model_3.py seeds
+python src/neural_network/train_model_3.py final
+```
+
+Naive Bayes and logistic regression fit on train and select on validation; they do not read test. Neural tuning and seed checks use train/validation; final evaluates test. Running training writes model artifacts; checking data access does not retrain.

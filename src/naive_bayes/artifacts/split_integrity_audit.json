@@ -1,0 +1,62 @@
+{
+  "dataset_version": "Member 1 updated uploads, 28 October 2026",
+  "scope": "All-split integrity, class counts and exact normalized fingerprints. No model training or test predictions.",
+  "normalization": {
+    "member1": "lowercase, replace literal escaped CRLF/newline/CR/tab, collapse whitespace",
+    "member2": "decode serialized string list using literal_eval, HTML unescape, lowercase, collapse whitespace"
+  },
+  "splits": {
+    "train": {
+      "rows": 21460,
+      "ham": 11100,
+      "spam": 10360,
+      "raw_duplicate_rows": 0,
+      "member1_normalized_duplicate_rows": 0,
+      "member2_normalized_duplicate_rows": 56,
+      "member2_normalized_conflicting_groups": 0,
+      "bytes": 29725578,
+      "sha256": "c2fdb4db9af0e00d56516273c1f1d0c1b5f943f5d2107bf7ea4957306d9a093a"
+    },
+    "validation": {
+      "rows": 4390,
+      "ham": 2294,
+      "spam": 2096,
+      "raw_duplicate_rows": 0,
+      "member1_normalized_duplicate_rows": 0,
+      "member2_normalized_duplicate_rows": 10,
+      "member2_normalized_conflicting_groups": 0,
+      "bytes": 6467988,
+      "sha256": "14ec5be8bdd409203b86a811ff0ed2777f5955b217b4a23e0521b5e89634f9e9"
+    },
+    "test": {
+      "rows": 4352,
+      "ham": 2235,
+      "spam": 2117,
+      "raw_duplicate_rows": 0,
+      "member1_normalized_duplicate_rows": 0,
+      "member2_normalized_duplicate_rows": 10,
+      "member2_normalized_conflicting_groups": 0,
+      "bytes": 6405534,
+      "sha256": "ecf75ce14963ba27360bf1260a94876dc6b3d2c3cbc1dfa2b85bfcb9499a6de8"
+    }
+  },
+  "cross_split_unique_overlap": {
+    "train__validation": {
+      "raw": 0,
+      "member1": 0,
+      "member2": 0
+    },
+    "train__test": {
+      "raw": 0,
+      "member1": 0,
+      "member2": 0
+    },
+    "validation__test": {
+      "raw": 0,
+      "member1": 0,
+      "member2": 0
+    }
+  },
+  "caveat": "Zero exact normalized overlaps does not establish absence of all near-duplicates, semantic or source leakage. Within-split equivalents are retained in the shared CSVs.",
+  "total_rows": 30202
+}

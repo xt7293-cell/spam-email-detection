@@ -1,0 +1,79 @@
+{
+  "method": "TF-IDF + Logistic Regression",
+  "data": {
+    "training": 21460,
+    "validation": 4390,
+    "positive_label": 1
+  },
+  "evaluation_split": "validation",
+  "test_evaluated": false,
+  "tfidf_config": {
+    "ngram_range": [
+      1,
+      1
+    ],
+    "min_df": 2,
+    "sublinear_tf": false,
+    "max_features": 50000
+  },
+  "feature_fit_scope": "train only",
+  "feature_note": "Same TF-IDF settings as Member 2 selected Naive Bayes; reevaluated only on validation.",
+  "vocabulary_size": 50000,
+  "num_experiments": 6,
+  "selection_rule": "highest validation spam F1; then precision; then lower experiment ID",
+  "selected": {
+    "experiment_id": 5,
+    "C": 10.0,
+    "class_weight": "none",
+    "solver": "liblinear",
+    "threshold": 0.5,
+    "max_iter": 2000,
+    "iterations": 8,
+    "fit_seconds": 0.83652,
+    "validation_inference_seconds": 0.00462,
+    "accuracy": 0.9908883826879271,
+    "precision": 0.9858223062381852,
+    "recall": 0.9952290076335878,
+    "f1": 0.9905033238366572,
+    "fpr": 0.013077593722755012,
+    "fnr": 0.004770992366412214,
+    "roc_auc": 0.9990476733197121,
+    "tn": 2264,
+    "fp": 30,
+    "fn": 10,
+    "tp": 2086
+  },
+  "baseline_next_to_member2": {
+    "experiment_id": 3,
+    "C": 1.0,
+    "class_weight": "none",
+    "solver": "liblinear",
+    "threshold": 0.5,
+    "max_iter": 2000,
+    "iterations": 7,
+    "fit_seconds": 0.55356,
+    "validation_inference_seconds": 0.00349,
+    "accuracy": 0.9849658314350798,
+    "precision": 0.9734141791044776,
+    "recall": 0.995706106870229,
+    "f1": 0.9844339622641509,
+    "fpr": 0.024847428073234524,
+    "fnr": 0.004293893129770993,
+    "roc_auc": 0.9986013546789834,
+    "tn": 2237,
+    "fp": 57,
+    "fn": 9,
+    "tp": 2087
+  },
+  "overlap_validation_rows": 0,
+  "validation_without_normalized_train_overlap": null,
+  "featurization_seconds": 8.39685090000421,
+  "total_run_seconds": 23.56089079999947,
+  "environment": {
+    "python": "3.13.7",
+    "sklearn": "1.9.1",
+    "pandas": "3.1.0",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "probability_note": "Uncalibrated model estimates, not guaranteed real-world probabilities."
+}

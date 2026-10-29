@@ -83,11 +83,16 @@ def audit_data(train, validation, data_dir, out):
     audit["raw_cross_split_unique_overlap"] = len(raw_overlap)
     audit["normalized_cross_split_unique_overlap"] = len(overlap)
     audit["overlapping_validation_rows"] = int((~keep).sum())
-    audit["note"] = ("Normalized duplicates remain in Member 1's fixed splits. "
-        "No rows were removed or reassigned. Reported primary metrics use all "
-        "validation rows; overlap-excluded metrics are a sensitivity check only. "
-        "Member 1/5 should review decoded-text grouping before final evaluation. "
-        "No independent exhaustive near-duplicate or test-split audit was run here.")
+    audit["note"] = (
+        "Shared input splits are preserved without removing or reassigning rows. "
+        "Normalization decodes serialized string lists and HTML entities, lowercases "
+        "and collapses whitespace. Within-split equivalents and cross-split overlaps "
+        "are reported separately. Main metrics use every validation row. "
+        "Overlap-excluded metrics use the same rows when no overlap is found. "
+        "This training script never reads test.csv and does not perform an "
+        "exhaustive cosine-similarity audit. See split_integrity_audit.json for the "
+        "separate all-split fingerprint audit of this delivered dataset version."
+    )
     records = []
     for key in sorted(overlap):
         for split, frame in [("train", train), ("validation", validation)]:
@@ -135,7 +140,7 @@ def make_figures(experiments, best, out):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--data-dir", type=Path, default=ROOT / "data")
+    parser.add_argument("--data-dir", type=Path, default=ROOT.parents[1] / "data" / "splits")
     parser.add_argument("--output-dir", type=Path, default=ROOT / "artifacts")
     args = parser.parse_args()
     out = args.output_dir.resolve()

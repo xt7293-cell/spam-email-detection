@@ -4,19 +4,19 @@
   "training_source_hashes_match": true,
   "model_hash_matches": true,
   "validation_metrics_independently_reproduced": {
-    "n": 4496,
-    "accuracy": 0.9891014234875445,
-    "precision": 0.9891794409377818,
-    "recall": 0.9887336638125281,
-    "f1": 0.9889565021410863,
-    "tn": 2253,
-    "fp": 24,
-    "fn": 25,
-    "tp": 2194,
-    "false_positive_rate": 0.010540184453227932,
-    "false_negative_rate": 0.011266336187471835,
-    "roc_auc": 0.9991355053760761,
-    "average_precision": 0.9990713035863734
+    "n": 4390,
+    "accuracy": 0.989749430523918,
+    "precision": 0.9894988066825776,
+    "recall": 0.9890267175572519,
+    "f1": 0.9892627057981389,
+    "tn": 2272,
+    "fp": 22,
+    "fn": 23,
+    "tp": 2073,
+    "false_positive_rate": 0.00959023539668701,
+    "false_negative_rate": 0.01097328244274809,
+    "roc_auc": 0.998801636529413,
+    "average_precision": 0.9983813611690882
   },
   "all_validation_predictions_match_saved_csv": true,
   "all_validation_wrapped_and_plain_inputs_match": true,
@@ -24,5 +24,5 @@
   "shared_vectorizer_available_as_pipeline_tfidf_step": true,
   "classifier_class_counts_match_training_only": true,
   "prediction_adapter_matches_pipeline": true,
-  "test_set_usage": "Not included in this Member 2 package; never read or evaluated"
+  "test_set_usage": "Not included in this Member 2 package. Training and this verifier never open it. A separate all-split fingerprint audit checks integrity without test predictions or metrics."
 }

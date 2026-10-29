@@ -1,0 +1,20 @@
+{
+  "hyperparameters": {
+    "learning_rate": 0.0003,
+    "units": 256,
+    "dropout": 0.5,
+    "batch_size": 64
+  },
+  "tfidf": {
+    "max_features": 20000,
+    "ngram_range": [
+      1,
+      2
+    ],
+    "sublinear_tf": true,
+    "min_df": 2,
+    "strip_accents": "unicode"
+  },
+  "threshold": 0.5,
+  "seed": 1
+}

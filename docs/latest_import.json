@@ -1,0 +1,356 @@
+{
+  "files_updated": [
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\naiveBayes\\input_manifest.json",
+      "destination": "src\\naive_bayes\\input_manifest.json",
+      "sha256": "826e52dfc5835a1f4462df3ea77f4271343381d0c06a2f280b652f9bee83fbac"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\naiveBayes\\README.md",
+      "destination": "src\\naive_bayes\\README.md",
+      "sha256": "9cfcd4f8aeb04492d8efc27eb2bb20578f2c57c54642053931c3162b7034df3e"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\naiveBayes\\Report.docx",
+      "destination": "src\\naive_bayes\\Report.docx",
+      "sha256": "6c8150d12511700cf4bb805e9d5649d68de7a904d7269821050e0ec728d389db"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\naiveBayes\\train_model_1.py",
+      "destination": "src\\naive_bayes\\train_model_1.py",
+      "sha256": "fb7ee1cc6974ccdc97be015e539c2ea3bb34585da4ab154d3b54bba7cab67b62"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\naiveBayes\\verify_saved_model.py",
+      "destination": "src\\naive_bayes\\verify_saved_model.py",
+      "sha256": "7a0d49e49d170c9015b08c53c5c0f75b6182041e6d67e48730778af7ff059b40"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\naiveBayes\\artifacts\\data_audit.json",
+      "destination": "src\\naive_bayes\\artifacts\\data_audit.json",
+      "sha256": "92ad0ff0714f1526b6a03905fa8a063d1da3332327cca857693cb4284ec35a87"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\naiveBayes\\artifacts\\experiments.csv",
+      "destination": "src\\naive_bayes\\artifacts\\experiments.csv",
+      "sha256": "fd266f4b3e0f016ab6ef76d8f811f8e01855da54cb362e3d17a372f1a32b4bb5"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\naiveBayes\\artifacts\\indicative_features.csv",
+      "destination": "src\\naive_bayes\\artifacts\\indicative_features.csv",
+      "sha256": "76b81742d54c0e260c0a182fa9cc3805c0513b6ef9e75a67787e5152bec69fed"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\naiveBayes\\artifacts\\naive_bayes_pipeline.joblib",
+      "destination": "src\\naive_bayes\\artifacts\\naive_bayes_pipeline.joblib",
+      "sha256": "f1964fdc53bff8920944ca4c5e29f1ce3e60ea7840a1b5a0c5a1772f52996d04"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\naiveBayes\\artifacts\\split_integrity_audit.json",
+      "destination": "src\\naive_bayes\\artifacts\\split_integrity_audit.json",
+      "sha256": "c5f3e4ab1aac6489fee894e9b3c8448c59933c23df81a95533725e9db1b12b63"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\naiveBayes\\artifacts\\validation_confusion_matrix.png",
+      "destination": "src\\naive_bayes\\artifacts\\validation_confusion_matrix.png",
+      "sha256": "0d2ea161b255fd6222eec2b1f8137aa04850f1b9113ba7159f3026cbe71800e7"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\naiveBayes\\artifacts\\validation_errors.csv",
+      "destination": "src\\naive_bayes\\artifacts\\validation_errors.csv",
+      "sha256": "5bc759982ecbcdda59e97d50fdee99557298bf108caeb91406e33ff992e94af8"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\naiveBayes\\artifacts\\validation_predictions.csv",
+      "destination": "src\\naive_bayes\\artifacts\\validation_predictions.csv",
+      "sha256": "f8a74bcfd9449c6e7f42e111f4a59c3a76f6c6238a8f2ead33b1f5c2b059f995"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\naiveBayes\\artifacts\\validation_results.json",
+      "destination": "src\\naive_bayes\\artifacts\\validation_results.json",
+      "sha256": "a3beb3c398c92c011fcbd8fdab5787738cb437fb0b4ced4702ba6003922f5317"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\naiveBayes\\artifacts\\validation_tuning.png",
+      "destination": "src\\naive_bayes\\artifacts\\validation_tuning.png",
+      "sha256": "00768577c60fd21845e3b1df020ae6398182a751d19e926d366bef78b0d4af49"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\naiveBayes\\artifacts\\verification.json",
+      "destination": "src\\naive_bayes\\artifacts\\verification.json",
+      "sha256": "5860fef70b52abdc66063488b6e508571c4dfd2a1132cce3732f893094d54f2f"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\README.md",
+      "destination": "src\\neural_network\\README.md",
+      "sha256": "41334981816bd86059c42fa919e76c1288594b706edf74a9965d871b58544c45"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\requirements.txt",
+      "destination": "src\\neural_network\\requirements.txt",
+      "sha256": "ab972ccaf391b49807d9411b33e60ffdbd3fdd21c1c8b2634146fcca11b16520"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\train_model_3.py",
+      "destination": "src\\neural_network\\train_model_3.py",
+      "sha256": "bc57a6665750df3e107495cbaab82d59fbd59105208a538fb5e255f8ac699b46"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\nn_artifacts\\classification_report.txt",
+      "destination": "src\\neural_network\\nn_artifacts\\classification_report.txt",
+      "sha256": "c213c8eade1c2d82df33f9112861c8833d9ad5ebff29ddb70201cf05ec3934d8"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\nn_artifacts\\model_summary.txt",
+      "destination": "src\\neural_network\\nn_artifacts\\model_summary.txt",
+      "sha256": "36d81f1dafd7c697976b2f93c973026fee84fbb3c41f4e3eab412b479d8523a4"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\nn_artifacts\\report_tables.md",
+      "destination": "src\\neural_network\\nn_artifacts\\report_tables.md",
+      "sha256": "9523b7095b50315a4acec0671d786d136f6d528ab98fa800387b7947bf5a1421"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\nn_artifacts\\results.json",
+      "destination": "src\\neural_network\\nn_artifacts\\results.json",
+      "sha256": "c73e4a6cb3515c0d2d0cf46b5c95312360612c8bd0e2235a04e3270e1c3685b6"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\nn_artifacts\\tfidf_vocabulary.csv",
+      "destination": "src\\neural_network\\nn_artifacts\\tfidf_vocabulary.csv",
+      "sha256": "1b1a1976f917257b24f75a401725d845d31d5ae74a1522de8f3b3c3c1232aa2f"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\nn_artifacts\\threshold_sweep_validation.csv",
+      "destination": "src\\neural_network\\nn_artifacts\\threshold_sweep_validation.csv",
+      "sha256": "5a76db902b4e6434f75803d8a05caf4c404c7bc08943d597b115f256d0468aa7"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\nn_artifacts\\training_history.csv",
+      "destination": "src\\neural_network\\nn_artifacts\\training_history.csv",
+      "sha256": "5226ebf5e5e89d3bbf11796a5a84c9c00f0d52e2ad6a67d603dfbd36ac0c0a60"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\nn_artifacts\\experiments\\best_config.json",
+      "destination": "src\\neural_network\\nn_artifacts\\experiments\\best_config.json",
+      "sha256": "0c3164816acbf64f7dab8026c0e474436835bc844ffc90b79df9f8cd4f01d1f0"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\nn_artifacts\\experiments\\FINAL_TEST_DONE.txt",
+      "destination": "src\\neural_network\\nn_artifacts\\experiments\\FINAL_TEST_DONE.txt",
+      "sha256": "f3195cd7528a04cbd7f35532e60024021718b723cdf6d2ca54ef6aa8cb90d02f"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\nn_artifacts\\experiments\\seed_runs.csv",
+      "destination": "src\\neural_network\\nn_artifacts\\experiments\\seed_runs.csv",
+      "sha256": "18583d009e5c13d69c199bae97f932a1a17e4f3b0210bfeb88f63c69912e860d"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\nn_artifacts\\experiments\\seed_summary.json",
+      "destination": "src\\neural_network\\nn_artifacts\\experiments\\seed_summary.json",
+      "sha256": "7f92347e1c448b9c07b6bcfc4937acefb680ae6e8ff359d5a8ab0fc4bb215a30"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\nn_artifacts\\experiments\\tuning_log.csv",
+      "destination": "src\\neural_network\\nn_artifacts\\experiments\\tuning_log.csv",
+      "sha256": "d1561413928f025ec863532a948ca6aeff20349d2c2e0e1333adda3d77642ecb"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\nn_artifacts\\model\\config.json",
+      "destination": "src\\neural_network\\nn_artifacts\\model\\config.json",
+      "sha256": "730dc7eee202c0799496282f62c76552c4e114d753fcf79ebc1ced7bf67edd1e"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\nn_artifacts\\model\\spam_nn.keras",
+      "destination": "src\\neural_network\\nn_artifacts\\model\\spam_nn.keras",
+      "sha256": "c53b05ee3d1dd642d1366ad744762fd620c55303fac98b89dd60ff1d2223117f"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\nn_artifacts\\model\\tfidf_vectorizer.joblib",
+      "destination": "src\\neural_network\\nn_artifacts\\model\\tfidf_vectorizer.joblib",
+      "sha256": "202b9138e690983086f9474ba1ae0f36378cdca131f9ea208f22a14b3d38801a"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\nn_artifacts\\plots\\confusion_matrix_test.png",
+      "destination": "src\\neural_network\\nn_artifacts\\plots\\confusion_matrix_test.png",
+      "sha256": "97423c286d497a916db2b18b6d64f32043b2fa6025eeb7da960104cc79d5e827"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\nn_artifacts\\plots\\confusion_matrix_validation.png",
+      "destination": "src\\neural_network\\nn_artifacts\\plots\\confusion_matrix_validation.png",
+      "sha256": "1452744c7b748303ef7185433f57385246700aef46354f6ab798d757f375a8e8"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\nn_artifacts\\plots\\roc_pr_curves.png",
+      "destination": "src\\neural_network\\nn_artifacts\\plots\\roc_pr_curves.png",
+      "sha256": "68d25ace2955a33172805c6af786b073eeb7b4a9c81e1b7f960c802db9dfb58a"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\nn_artifacts\\plots\\seed_learning_curves.png",
+      "destination": "src\\neural_network\\nn_artifacts\\plots\\seed_learning_curves.png",
+      "sha256": "3280ef703180e6b3c0c450976d9583df970f2b78d543738aee86fbd6a1100314"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\nn_artifacts\\plots\\test_score_distribution.png",
+      "destination": "src\\neural_network\\nn_artifacts\\plots\\test_score_distribution.png",
+      "sha256": "2970b2b6b2f6c6467b11caa981b64c6c2a54804cc8ace9e6ca4a8955ee8e68e9"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\nn_artifacts\\plots\\threshold_sweep_validation.png",
+      "destination": "src\\neural_network\\nn_artifacts\\plots\\threshold_sweep_validation.png",
+      "sha256": "23ad78de58410494c755bb1325d8543cdcb3975b34634f7432fc8b7e23989c71"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\nn_artifacts\\plots\\training_curves.png",
+      "destination": "src\\neural_network\\nn_artifacts\\plots\\training_curves.png",
+      "sha256": "ae72fe36a3c3a42d97e414ea313cc53bc23759253eb599b11383cca344ff0d1b"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\nn_artifacts\\plots\\tuning_trials.png",
+      "destination": "src\\neural_network\\nn_artifacts\\plots\\tuning_trials.png",
+      "sha256": "fe3545120a3dd0e7c2b75620c9d89aff6ec984fc667ed077b2ca9be780ee14e2"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\nn_artifacts\\predictions\\test_misclassified.csv",
+      "destination": "src\\neural_network\\nn_artifacts\\predictions\\test_misclassified.csv",
+      "sha256": "f39a07bbffb2ba78ac5b0bbef4a3f4ab4ff397af772b8e9d63bd04c0d4cca73a"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\nn_artifacts\\predictions\\test_predictions.csv",
+      "destination": "src\\neural_network\\nn_artifacts\\predictions\\test_predictions.csv",
+      "sha256": "1b6207d48a6caff1d084fb0711031ff90b03246c834e8d14ebeca0ac054d5381"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\nn_artifacts\\predictions\\validation_misclassified.csv",
+      "destination": "src\\neural_network\\nn_artifacts\\predictions\\validation_misclassified.csv",
+      "sha256": "9a7c467feade7cfa8dc4b868af94c4df2e29652ce7576a50262596b653fb58a8"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\nn_artifacts\\predictions\\validation_predictions.csv",
+      "destination": "src\\neural_network\\nn_artifacts\\predictions\\validation_predictions.csv",
+      "sha256": "82bb313008a6614195b53d1f8a5f06c4954858d0c861e22e3f92f6a55443461b"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\nn_artifacts\\experiments\\seed_histories\\history_seed_1.csv",
+      "destination": "src\\neural_network\\nn_artifacts\\experiments\\seed_histories\\history_seed_1.csv",
+      "sha256": "5226ebf5e5e89d3bbf11796a5a84c9c00f0d52e2ad6a67d603dfbd36ac0c0a60"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\nn_artifacts\\experiments\\seed_histories\\history_seed_2.csv",
+      "destination": "src\\neural_network\\nn_artifacts\\experiments\\seed_histories\\history_seed_2.csv",
+      "sha256": "e2dbe16973daf59e7723700d69f3c8a664a9e80778af3787a172a7503f39d44e"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\nn_artifacts\\experiments\\seed_histories\\history_seed_3.csv",
+      "destination": "src\\neural_network\\nn_artifacts\\experiments\\seed_histories\\history_seed_3.csv",
+      "sha256": "5308c09b770cd96956597299b93c28d656e228cbf5a10d25263749c7390150ac"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\nn_artifacts\\experiments\\seed_histories\\history_seed_4.csv",
+      "destination": "src\\neural_network\\nn_artifacts\\experiments\\seed_histories\\history_seed_4.csv",
+      "sha256": "b12eb8d2284f05b51acb0e976d857d07d55d0a3b000014d077809c50643389a9"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\nn_artifacts\\experiments\\seed_histories\\history_seed_5.csv",
+      "destination": "src\\neural_network\\nn_artifacts\\experiments\\seed_histories\\history_seed_5.csv",
+      "sha256": "0bcdfdb5c666af6bd9d4eeafec894567cc8248cb45a5bf8b206b794048b76dd1"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\logisticRegression\\Member3_Report_Notes.md",
+      "destination": "src\\logistic_regression\\Member3_Report_Notes.md",
+      "sha256": "3380e5f84d11fe8697083fa74fe137c14ddef12e687f02dd185a0f340d75a485"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\logisticRegression\\predict_model_2.py",
+      "destination": "src\\logistic_regression\\predict_model_2.py",
+      "sha256": "97ee3d5749195166412a974ce8b5c47b745f1ddaac45731b66739ad789c5f829"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\logisticRegression\\preprocessing.py",
+      "destination": "src\\logistic_regression\\preprocessing.py",
+      "sha256": "1d36dd5b66ddc8ff2c8549b16c34416e736a13fc7b856f0d356976ec456d4f54"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\logisticRegression\\requirements.txt",
+      "destination": "src\\logistic_regression\\requirements.txt",
+      "sha256": "957371c366591604753b0c82db0ee1966b8cc48232ef632e85990a4e130d0a87"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\logisticRegression\\train_model_2.py",
+      "destination": "src\\logistic_regression\\train_model_2.py",
+      "sha256": "f2f620cdc4b5fdd15964c6c32ca3e13901c6be44c53c9f7d7bc39ab656073cbb"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\logisticRegression\\artifacts\\experiments.csv",
+      "destination": "src\\logistic_regression\\artifacts\\experiments.csv",
+      "sha256": "e63cd3876b56a6af15bdf8c1c7b96167c627284cd9e5dbd154861df60f0efac6"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\logisticRegression\\artifacts\\influential_features.csv",
+      "destination": "src\\logistic_regression\\artifacts\\influential_features.csv",
+      "sha256": "c6c690e91310465e3720a1cbcd4af7ba3200db468f8851589895bfd3e962bbdc"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\logisticRegression\\artifacts\\logistic_regression_pipeline.joblib",
+      "destination": "src\\logistic_regression\\artifacts\\logistic_regression_pipeline.joblib",
+      "sha256": "1f461f3068c5a92a4af4a9c33d6d603f5b4f017aace034f933c40477bd3d2641"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\logisticRegression\\artifacts\\validation_confusion_matrix.png",
+      "destination": "src\\logistic_regression\\artifacts\\validation_confusion_matrix.png",
+      "sha256": "d449444ca01574be229d6b26fbc00b16e09493330975cf952917b9fd0ea4b1d7"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\logisticRegression\\artifacts\\validation_errors.csv",
+      "destination": "src\\logistic_regression\\artifacts\\validation_errors.csv",
+      "sha256": "96057c98aa9861252e4d325c3556aa7de77bfd3743f8a3cf7025ac3d14f4b2db"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\logisticRegression\\artifacts\\validation_predictions.csv",
+      "destination": "src\\logistic_regression\\artifacts\\validation_predictions.csv",
+      "sha256": "7dea528eae928a1c7319c3ad2089076afc6c909a40bd3f80d2bf6471452c87b6"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\logisticRegression\\artifacts\\validation_results.json",
+      "destination": "src\\logistic_regression\\artifacts\\validation_results.json",
+      "sha256": "ac6a5aa69544068ecafe9f393b2a37734e72d2593d1554c0f44e5edda691d82c"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\logisticRegression\\artifacts\\validation_tuning.png",
+      "destination": "src\\logistic_regression\\artifacts\\validation_tuning.png",
+      "sha256": "40d929dfb367b06d3b9d4acc5fa7ee8e1635563933c7e58c32415b1dfc08ada6"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\logisticRegression\\tests\\test_member3.py",
+      "destination": "src\\logistic_regression\\tests\\test_member3.py",
+      "sha256": "bbc76497f2e43905184316ab05779ca141a7997a3e1c12c7dbe74740188c1183"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\naiveBayes\\data\\train.csv",
+      "destination": "data\\naiveBayes_submission\\train.csv",
+      "sha256": "c2fdb4db9af0e00d56516273c1f1d0c1b5f943f5d2107bf7ea4957306d9a093a"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\naiveBayes\\data\\validation.csv",
+      "destination": "data\\naiveBayes_submission\\validation.csv",
+      "sha256": "14ec5be8bdd409203b86a811ff0ed2777f5955b217b4a23e0521b5e89634f9e9"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\data\\test.csv",
+      "destination": "data\\neuralnetwork_submission\\test.csv",
+      "sha256": "ecf75ce14963ba27360bf1260a94876dc6b3d2c3cbc1dfa2b85bfcb9499a6de8"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\data\\train.csv",
+      "destination": "data\\neuralnetwork_submission\\train.csv",
+      "sha256": "c2fdb4db9af0e00d56516273c1f1d0c1b5f943f5d2107bf7ea4957306d9a093a"
+    },
+    {
+      "source": "C:\\Users\\Sotong\\OneDrive\\Desktop\\neuralnetwork\\data\\validation.csv",
+      "destination": "data\\neuralnetwork_submission\\validation.csv",
+      "sha256": "14ec5be8bdd409203b86a811ff0ed2777f5955b217b4a23e0521b5e89634f9e9"
+    }
+  ],
+  "backup": "D:\\GitHub\\spam-email-detection\\.integration-backups\\20261029-172322",
+  "source_folders_modified": false
+}

@@ -22,16 +22,15 @@ class Models:
 
     def load(self, key):
         import joblib
-        if key == 'naive_bayes':
-            folder = ROOT / 'src/naive_bayes'
+        if key in ('naive_bayes', 'logistic_regression'):
+            folder = ROOT / 'src' / key
             # The original pickle references this exact module name.
             spec = importlib.util.spec_from_file_location('preprocessing', folder / 'preprocessing.py')
             module = importlib.util.module_from_spec(spec)
             sys.modules['preprocessing'] = module
             spec.loader.exec_module(module)
-            return joblib.load(folder / 'artifacts/naive_bayes_pipeline.joblib')
-        if key == 'logistic_regression':
-            raise FileNotFoundError('Awaiting your supplied logistic-regression model; no replacement is trained or loaded.')
+            filename = 'naive_bayes_pipeline.joblib' if key == 'naive_bayes' else 'logistic_regression_pipeline.joblib'
+            return joblib.load(folder / 'artifacts' / filename)
         import tensorflow as tf
         folder = ROOT / 'src/neural_network/nn_artifacts'
         vectorizer = joblib.load(folder / 'model/tfidf_vectorizer.joblib')

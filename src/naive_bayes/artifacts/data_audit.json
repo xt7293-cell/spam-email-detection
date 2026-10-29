@@ -3,26 +3,26 @@
   "splits_preserved": true,
   "splits": {
     "train": {
-      "rows": 21487,
-      "ham": 11301,
-      "spam": 10186,
+      "rows": 21460,
+      "ham": 11100,
+      "spam": 10360,
       "raw_duplicate_rows": 0,
-      "normalized_duplicate_rows": 245,
+      "normalized_duplicate_rows": 56,
       "normalized_conflicting_groups": 0,
-      "sha256": "5db1d0b0e68544bb98b04b0d130ec0a196e6690c3f67e7b1a87c4db77cb264c4"
+      "sha256": "c2fdb4db9af0e00d56516273c1f1d0c1b5f943f5d2107bf7ea4957306d9a093a"
     },
     "validation": {
-      "rows": 4496,
-      "ham": 2277,
-      "spam": 2219,
+      "rows": 4390,
+      "ham": 2294,
+      "spam": 2096,
       "raw_duplicate_rows": 0,
-      "normalized_duplicate_rows": 57,
+      "normalized_duplicate_rows": 10,
       "normalized_conflicting_groups": 0,
-      "sha256": "2ce1083a39f094c9bd029ec06457ebbd64298dc68efb75217bb1a424ae8fead6"
+      "sha256": "14ec5be8bdd409203b86a811ff0ed2777f5955b217b4a23e0521b5e89634f9e9"
     }
   },
   "raw_cross_split_unique_overlap": 0,
-  "normalized_cross_split_unique_overlap": 1,
-  "overlapping_validation_rows": 1,
-  "note": "Normalized duplicates remain in Member 1's fixed splits. No rows were removed or reassigned. Reported primary metrics use all validation rows; overlap-excluded metrics are a sensitivity check only. Member 1/5 should review decoded-text grouping before final evaluation. No independent exhaustive near-duplicate or test-split audit was run here."
+  "normalized_cross_split_unique_overlap": 0,
+  "overlapping_validation_rows": 0,
+  "note": "Shared input splits are preserved without removing or reassigning rows. Normalization decodes serialized string lists and HTML entities, lowercases and collapses whitespace. Within-split equivalents and cross-split overlaps are reported separately. Main metrics use every validation row. Overlap-excluded metrics use the same rows when no overlap is found. This training script never reads test.csv and does not perform an exhaustive cosine-similarity audit. See split_integrity_audit.json for the separate all-split fingerprint audit of this delivered dataset version."
 }

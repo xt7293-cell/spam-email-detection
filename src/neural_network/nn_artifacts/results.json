@@ -1,22 +1,26 @@
 {
   "model": "MLP on TF-IDF (Keras)",
-  "created": "2026-10-28T00:42:12",
-  "seed": 42,
+  "created": "2026-10-29T00:09:21",
+  "seed": 1,
   "data": {
     "train": {
-      "rows": 21487,
-      "spam_share": 0.4741
+      "rows": 21460,
+      "spam_share": 0.4828
     },
     "validation": {
-      "rows": 4496,
-      "spam_share": 0.4935
+      "rows": 4390,
+      "spam_share": 0.4774
     },
     "test": {
-      "rows": 4499,
-      "spam_share": 0.483
+      "rows": 4352,
+      "spam_share": 0.4864
     }
   },
   "config": {
+    "learning_rate": 0.0003,
+    "units": 256,
+    "dropout": 0.5,
+    "batch_size": 64,
     "max_features": 20000,
     "ngram_range": [
       1,
@@ -24,47 +28,50 @@
     ],
     "sublinear_tf": true,
     "min_df": 2,
-    "batch_size": 128,
     "max_epochs": 30,
     "early_stopping_patience": 3,
-    "optimizer": "Adam(1e-3)",
-    "architecture": "Dense256-Drop0.5-Dense64-Drop0.3-Sigmoid",
+    "optimizer": "Adam",
+    "hidden_layers": [
+      256,
+      64
+    ],
     "trainable_params": 5136769
   },
   "training": {
-    "epochs_run": 5,
-    "best_epoch": 2
+    "epochs_run": 6,
+    "best_epoch": 3,
+    "train_seconds": 24.18
   },
-  "threshold_selected_on_validation": 0.7,
+  "threshold_selected_on_validation": 0.5,
   "validation": {
-    "threshold": 0.7,
-    "accuracy": 0.9919928825622776,
-    "precision": 0.9936680235187698,
-    "recall": 0.9900856241550248,
-    "f1": 0.9918735891647855,
-    "roc_auc": 0.9993484623850829,
-    "pr_auc": 0.9992450976100079,
-    "false_positive_rate": 0.006148440931049627,
-    "false_negative_rate": 0.009914375844975214,
-    "tn": 2263,
-    "fp": 14,
-    "fn": 22,
-    "tp": 2197
+    "threshold": 0.5,
+    "accuracy": 0.992255125284738,
+    "precision": 0.9900190114068441,
+    "recall": 0.9937977099236641,
+    "f1": 0.991904761904762,
+    "roc_auc": 0.9991907614953046,
+    "pr_auc": 0.9988194167065839,
+    "false_positive_rate": 0.009154315605928508,
+    "false_negative_rate": 0.006202290076335878,
+    "tn": 2273,
+    "fp": 21,
+    "fn": 13,
+    "tp": 2083
   },
   "test": {
-    "threshold": 0.7,
-    "accuracy": 0.98421871527006,
-    "precision": 0.9911214953271028,
-    "recall": 0.976069949378739,
-    "f1": 0.9835381405054486,
-    "roc_auc": 0.9989504190212167,
-    "pr_auc": 0.9987540889266411,
-    "false_positive_rate": 0.00816852966466036,
-    "false_negative_rate": 0.02393005062126093,
-    "tn": 2307,
-    "fp": 19,
-    "fn": 52,
-    "tp": 2121
+    "threshold": 0.5,
+    "accuracy": 0.9908088235294118,
+    "precision": 0.9891662741403674,
+    "recall": 0.9919697685403873,
+    "f1": 0.9905660377358491,
+    "roc_auc": 0.9992442135096836,
+    "pr_auc": 0.999173098925879,
+    "false_positive_rate": 0.01029082774049217,
+    "false_negative_rate": 0.00803023145961266,
+    "tn": 2212,
+    "fp": 23,
+    "fn": 17,
+    "tp": 2100
   },
   "environment": {
     "python": "3.14.0",

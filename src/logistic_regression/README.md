@@ -1,1 +1,3 @@
-No trained logistic-regression model was supplied. Add a trusted fitted scikit-learn pipeline at models/logistic_regression/pipeline.joblib with labels 0=legitimate and 1=spam. The application will load it on its next start.
+# Logistic regression
+
+Saved model and validation evidence: `artifacts/`. Inference: `predict_model_2.py`. Training: `train_model_2.py`. Retain `preprocessing.py` alongside the saved pipeline. Shared datasets: `../../data/splits/`. See `Member3_Report_Notes.md` for the original report.

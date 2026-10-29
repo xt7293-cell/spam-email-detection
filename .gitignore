@@ -16,3 +16,8 @@ src/neural_network/nn_artifacts/predictions/*.csv
 
 .integration-backups/
 
+
+# Imported datasets and prediction rows remain local.
+data/*_submission/*.csv
+src/logistic_regression/artifacts/*.csv
+src/neural_network/nn_artifacts/experiments/

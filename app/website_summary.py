@@ -16,7 +16,9 @@ def website_summary():
  models=[]
  for key,name,val,threshold,about in [
  ('naive_bayes','Naive Bayes',nb['selected'],.5,{'Method':'Multinomial Naive Bayes','Text':'Decode list wrappers and HTML; lowercase; normalise whitespace.','TF-IDF':str(nb['tfidf_config']),'Training':'Training only; alpha='+str(nb['selected']['alpha']),'Tuning':str(nb['number_of_configurations'])+' validation configurations; highest spam F1.'}),
- ('neural_network','Neural network',nn['validation'],float(nn['threshold_selected_on_validation']),{'Method':'Dense neural network','Text':'Lowercase and Unicode accent stripping; own saved vectorizer.','TF-IDF':str({k:nn['config'][k] for k in ['max_features','ngram_range','min_df','sublinear_tf']}),'Training':nn['config']['architecture']+'; '+nn['config']['optimizer'],'Tuning':'Validation early stopping (patience 3); selected threshold 0.7.'})]:
-  models.append({'id':key,'name':name,'status':'ready','threshold':threshold,'about':about,'evaluations':[pack(val,'Validation'),pack(common['models'][key],'Test')]})
- models.insert(1,{'id':'logistic_regression','name':'Logistic regression','status':'unavailable','message':'Awaiting your supplied model.','about':{'Status':'Awaiting your supplied model.'},'evaluations':[]})
- return {'models':models,'dataset':dataset,'comparison_note':common['note'],'comparison_split':'Test','comparison_rows':common['rows']}
+ ('neural_network','Neural network',nn['validation'],float(nn['threshold_selected_on_validation']),{'Method':'Dense neural network','Text':'Lowercase and Unicode accent stripping; own saved vectorizer.','TF-IDF':str({k:nn['config'][k] for k in ['max_features','ngram_range','min_df','sublinear_tf']}),'Training':str(nn['config'].get('hidden_layers', nn['config'].get('units')))+'; '+nn['config']['optimizer'],'Tuning':'Validation early stopping (patience 3); threshold read from saved results.'})]:
+  models.append({'id':key,'name':name,'status':'ready','threshold':threshold,'about':about,'evaluations':[pack(val,'Validation')]})
+ lr=read(ROOT/'src/logistic_regression/artifacts/validation_results.json')
+ val=dict(lr['selected']); val['false_positive_rate']=val['fpr']
+ models.insert(1,{'id':'logistic_regression','name':'Logistic regression','status':'ready','threshold':0.5,'about':{'Method':lr['method'],'TF-IDF':str(lr['tfidf_config']),'Tuning':lr['selection_rule'],'Evaluation':'Supplied validation results only; test not evaluated.'},'evaluations':[pack(val,'Validation')]})
+ return {'models':models,'dataset':dataset,'comparison_note':'Supplied validation scores for the newly imported models; old common test results are historical.','comparison_split':'Validation','comparison_rows':common['rows']}

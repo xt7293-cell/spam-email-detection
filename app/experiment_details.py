@@ -28,8 +28,8 @@ def cases(folder, neural, threshold, split):
     with path.open(encoding='utf-8-sig',newline='') as f:
         for r in csv.DictReader(f):
             row_id = r['row_id' if neural else 'row_index_0based']
-            prob = float(r['prob_spam' if neural else 'spam_probability'])
-            actual = int(r['label' if neural else 'true_label']); pred = int(r['pred' if neural else 'predicted_label'])
+            prob = float((r['prob_spam'] if neural else r.get('spam_probability',r.get('spam_probability_estimate'))))
+            actual = int((r['label'] if neural else r.get('true_label',r.get('actual_label')))); pred = int(r['pred' if neural else 'predicted_label'])
             if not math.isfinite(prob): continue
             detail = errors.get(row_id, r)
             item = {'row':int(row_id),'probability':prob,'actual':actual,'predicted':pred,'distance':abs(prob-threshold),'excerpt':excerpt(detail.get('text_preview',detail.get('text_excerpt','')))}
@@ -38,7 +38,7 @@ def cases(folder, neural, threshold, split):
     near.sort(key=lambda r:r['distance'])
     # Resolve missing marginal excerpts by saved row index, without inference.
     missing={r['row']:r for r in near[:5] if not r['excerpt']}
-    source=ROOT/'data/processed'/f'{split}.csv'
+    source=ROOT/'data/splits'/f'{split}.csv'
     if missing and source.exists():
         with source.open(encoding='utf-8-sig',newline='') as f:
             for i,r in enumerate(csv.DictReader(f)):
@@ -53,7 +53,8 @@ def experiment_details():
         item={'id':key,'name':name}
         try:
             if key=='logistic_regression':
-                item.update(status='unavailable',message='No training report or saved evaluation was supplied.'); output.append(item); continue
+                d=read_json(ROOT/'src/logistic_regression/artifacts/validation_results.json'); val=dict(d['selected']); val['false_positive_rate']=val['fpr']
+                item.update(status='ready',settings={'Method':d['method'],'Tuning':d['selection_rule']},evaluations=[metrics(val,'Validation')],cases=cases(ROOT/'src/logistic_regression/artifacts',False,0.5,'validation')); output.append(item); continue
             neural=key=='neural_network'
             folder=ROOT/('src/neural_network/nn_artifacts' if neural else 'src/naive_bayes/artifacts')
             source=folder/('results.json' if neural else 'validation_results.json')
